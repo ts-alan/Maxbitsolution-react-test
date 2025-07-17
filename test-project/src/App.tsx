@@ -1,33 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.scss'
+import { useGetCocktailByNameQuery } from './store/app/apiSlice';
+import {useState} from "react";
+import {Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar} from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [menuItem, setMenuItem] = useState('margarita');
+
+    const {
+        data,
+        error,
+        isLoading,
+    } = useGetCocktailByNameQuery(menuItem);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Drawer
+        open
+        variant="permanent" >
+        <Toolbar>
+        <List>
+            {['Margarita', 'Mojito', "A1", "Kir"].map((text) => (
+                <ListItem key={text}>
+                    <ListItemButton>
+                        <ListItemText primary={text} />
+                    </ListItemButton>
+                </ListItem>
+            ))}
+        </List>
+        </Toolbar>
+    </Drawer>
+    <div style={{ marginLeft: 240, padding: 16 }}>
+        <h1>Контент справа</h1>
+    </div>
     </>
   )
 }
