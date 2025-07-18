@@ -1,6 +1,15 @@
 import { useGetCocktailByNameQuery } from './store/app/apiSlice';
 import {useState} from "react";
-import {Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar} from "@mui/material";
+import {Box, Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar} from "@mui/material";
+import { styled } from '@mui/material/styles';
+
+const drawerWidth = 240;
+
+const MainContentContainer = styled(Box)(({ theme }) => ({
+  marginLeft: `${drawerWidth}px`,
+  padding: theme.spacing(3),
+  width: `calc(100% - ${drawerWidth}px)`,
+}));
 
 function App() {
     const [menuItem, setMenuItem] = useState('margarita');
@@ -9,29 +18,44 @@ function App() {
         data,
         error,
         isLoading,
+        isFetching
     } = useGetCocktailByNameQuery(menuItem);
 
   return (
-    <>
+    <Box sx={{ display: 'flex' }}>
     <Drawer
-        open
-        variant="permanent" >
-        <Toolbar>
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+        }}
+        >
+        <Toolbar />
         <List>
             {['Margarita', 'Mojito', "A1", "Kir"].map((text) => (
-                <ListItem key={text}>
+                <ListItem onClick={() => setMenuItem(text.toLowerCase())} key={text}>
                     <ListItemButton>
                         <ListItemText primary={text} />
                     </ListItemButton>
                 </ListItem>
             ))}
         </List>
-        </Toolbar>
     </Drawer>
-    <div style={{ marginLeft: 240, padding: 16 }}>
-        <h1>Контент справа</h1>
-    </div>
-    </>
+    <MainContentContainer>
+        {isFetching ? (
+            <p>Loading...</p>
+        ) : data?.drinks?.[0] ? (
+            <>
+                <h1>{data.drinks[0].strDrink}</h1>
+                <p>{data.drinks[0].strInstructions}</p>
+                <img src={data.drinks[0].strDrinkThumb} alt={data.drinks[0].strDrink} style={{ maxWidth: 300, height: 'auto' }} />
+            </>
+        ) : (
+            <h1>Cocktail not found</h1>
+        )}
+    </MainContentContainer>
+    </Box>
   )
 }
 
