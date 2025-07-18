@@ -16,7 +16,6 @@ import { styled } from '@mui/material/styles';
 const drawerWidth = 240;
 
 const MainContentContainer = styled(Box)(({ theme }) => ({
-  marginLeft: `${drawerWidth}px`,
   padding: theme.spacing(3),
   width: `calc(100% - ${drawerWidth}px)`,
 }));
@@ -71,41 +70,37 @@ function App() {
         {isFetching ? (
             <p>Loading...</p>
         ) : drink ? (
-            <>
-                <img
-                    src={drink.strDrinkThumb}
-                    alt={drink.strDrink}
-                    style={{
-                        position: 'fixed',
-                        top: '16px',
-                        right: '16px',
-                        width: '120px',
-                        height: 'auto',
-                        borderRadius: '8px',
-                        zIndex: 1,
-                    }}
-                />
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Typography variant="h4" gutterBottom>{drink.strDrink}</Typography>
-                        <Typography variant="subtitle1" color="text.secondary">{drink.strCategory}</Typography>
-                        <Typography variant="subtitle2" color="text.secondary">{drink.strAlcoholic}</Typography>
-                        <Typography variant="body2" color="text.secondary" gutterBottom>{drink.strGlass}</Typography>
+            <div style={{ display: 'flex' }}>
+                <div style={{ flex: 1 }}>
+                    <Typography variant="h4" gutterBottom sx={{ mt: 0 }}>{drink.strDrink}</Typography>
+                    <Typography variant="subtitle1" color="text.secondary">{drink.strCategory}</Typography>
+                    <Typography variant="subtitle2" color="text.secondary">{drink.strAlcoholic}</Typography>
+                    <Typography variant="body2" color="text.secondary" gutterBottom>{drink.strGlass}</Typography>
 
-                        <Typography variant="h6" sx={{ mt: 2 }}>Instructions:</Typography>
-                        <Typography variant="body1">{drink.strInstructions}</Typography>
+                    <Typography variant="h6" sx={{ mt: 2 }}>Instructions:</Typography>
+                    <Typography variant="body1">{drink.strInstructions}</Typography>
 
-                        <Typography variant="h6" sx={{ mt: 2 }}>List of ingredients:</Typography>
-                        <List dense>
-                            {ingredients.map((item, index) => (
-                                <ListItem key={index} disablePadding>
-                                    <ListItemText primary={`${item.measure} ${item.ingredient}`} />
-                                </ListItem>
-                            ))}
-                        </List>
-                </Grid>
-            </Grid>
-            </>
+                    <Typography variant="h6" sx={{ mt: 2 }}>List of ingredients:</Typography>
+                    <List dense>
+                        {ingredients.map((item, index) => (
+                            <ListItem key={index} disablePadding>
+                                <ListItemText primary={`${item.measure} ${item.ingredient}`} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </div>
+                <div style={{ position: 'sticky', top: '16px', marginLeft: '24px' }}>
+                    <img
+                        src={drink.strDrinkThumb}
+                        alt={drink.strDrink}
+                        style={{
+                            width: '240px',
+                            height: 'auto',
+                            borderRadius: '8px',
+                        }}
+                    />
+                </div>
+            </div>
         ) : (
             <Typography variant="h5">Cocktail not found</Typography>
         )}
