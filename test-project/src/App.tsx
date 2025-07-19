@@ -28,7 +28,7 @@ function App() {
 
     return (
       <AppContainer>
-        <SideMenu onSelectItem={setMenuItem} />
+        <SideMenu onSelectItem={setMenuItem} activeItem={menuItem} />
         <MainContentContainer>
             {isFetching ? (
                 <p>Loading...</p>

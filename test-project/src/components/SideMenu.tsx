@@ -14,18 +14,19 @@ const StyledDrawer = styled(Drawer)({
 
 interface SideMenuProps {
     onSelectItem: (item: string) => void;
+    activeItem: string;
 }
 
 const menuItems = ['Margarita', 'Mojito', "A1", "Kir"];
 
-export function SideMenu({ onSelectItem }: SideMenuProps) {
+export function SideMenu({ onSelectItem, activeItem }: SideMenuProps) {
     return (
         <StyledDrawer variant="permanent">
             <Toolbar />
             <List>
                 {menuItems.map((text) => (
-                    <ListItem onClick={() => onSelectItem(text.toLowerCase())} key={text}>
-                        <ListItemButton>
+                    <ListItem onClick={() => onSelectItem(text.toLowerCase())} key={text} disablePadding>
+                        <ListItemButton selected={activeItem === text.toLowerCase()}>
                             <ListItemText primary={text} />
                         </ListItemButton>
                     </ListItem>
