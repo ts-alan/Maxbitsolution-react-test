@@ -38,17 +38,16 @@ interface CocktailDetailsProps {
     drink: Drink;
 }
 
+// TheCocktailDB API provides up to 15 ingredients.
+const MAX_INGREDIENTS = 15;
+
 export function CocktailDetails({ drink }: CocktailDetailsProps) {
-    const ingredients = [];
-    for (let i = 1; i <= 15; i++) {
-        const ingredientKey = `strIngredient${i}`;
-        const measureKey = `strMeasure${i}`;
-        const ingredient = drink[ingredientKey];
-        const measure = drink[measureKey];
-        if (ingredient) {
-            ingredients.push({ ingredient, measure: measure?.trim() || '' });
-        }
-    }
+    const ingredients = Array.from({ length: MAX_INGREDIENTS }, (_, i) => {
+        const ingredient = drink[`strIngredient${i + 1}`];
+        const measure = drink[`strMeasure${i + 1}`];
+        return (ingredient) ? { ingredient, measure: measure?.trim() || '' } : null;
+    }).filter((item): item is NonNullable<typeof item> => !!item);
+
 
     return (
         <DrinkDetailsContainer>
