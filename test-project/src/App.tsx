@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { SideMenu } from "./components/SideMenu";
 import { CocktailDetails } from "./components/CocktailDetails";
 import { useParams } from "react-router-dom";
+import { NotFound } from "./components/NotFound";
 
 const drawerWidth = 240;
 
@@ -34,7 +35,7 @@ function App() {
             ) : drink ? (
                 <CocktailDetails drink={drink} />
             ) : (
-                <Typography variant="h5">Cocktail not found</Typography>
+                <NotFound />
             )}
         </MainContentContainer>
     </AppContainer>
