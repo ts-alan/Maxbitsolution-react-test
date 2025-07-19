@@ -85,6 +85,7 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
                 <DrinkImage
                     src={drink.strDrinkThumb}
                     alt={drink.strDrink}
+                    loading="lazy"
                 />
             </ImageWrapper>
         </DrinkDetailsContainer>
