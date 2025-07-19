@@ -9,7 +9,7 @@ export function NotFound() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 minHeight: '100vh',
-                backgroundColor: '#f5f5f5',
+                backgroundColor: '#ffffff',
             }}
         >
             <Container maxWidth="md" sx={{ textAlign: 'center', p: 3 }}>
