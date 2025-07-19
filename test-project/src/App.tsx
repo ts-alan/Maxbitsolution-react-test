@@ -45,7 +45,7 @@ const AppBar = styled(MuiAppBar, {
 
 const MainContentContainer = styled('main')(({theme}) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+  padding: theme.spacing(3),
     [theme.breakpoints.down('sm')]: {
         marginLeft: 0,
     }
@@ -68,7 +68,7 @@ function App() {
     const drink = data?.drinks?.[0];
 
     return (
-        <AppContainer>
+      <AppContainer>
             <AppBar position="absolute" open={isSideMenuOpen}>
                 <Toolbar>
                     <IconButton
@@ -90,17 +90,17 @@ function App() {
                 isOpen={isSideMenuOpen}
                 onClose={handleDrawerToggle}
             />
-            <MainContentContainer>
-                {isFetching ? (
-                    <p>Loading...</p>
-                ) : drink ? (
-                    <CocktailDetails drink={drink} />
-                ) : (
-                    <NotFound />
-                )}
-            </MainContentContainer>
-        </AppContainer>
-    )
+        <MainContentContainer>
+            {isFetching ? (
+                <p>Loading...</p>
+            ) : drink ? (
+                <CocktailDetails drink={drink} />
+            ) : (
+                <NotFound />
+            )}
+        </MainContentContainer>
+    </AppContainer>
+  )
 }
 
 export default App

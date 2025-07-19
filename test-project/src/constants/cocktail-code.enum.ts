@@ -1,4 +1,4 @@
-export const enum CocktailCodeEnum {
+export enum CocktailCodeEnum {
     Margarita = 'margarita',
     Mojito = 'mojito',
     A1 = 'a1',
