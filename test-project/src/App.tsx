@@ -1,7 +1,7 @@
 import {
     useGetCocktailByNameQuery
 } from './store/app/apiSlice';
-import {AppBar as MuiAppBar, type AppBarProps as MuiAppBarProps, Box, IconButton, Toolbar, useMediaQuery, useTheme, Stack} from "@mui/material";
+import {AppBar as MuiAppBar, type AppBarProps as MuiAppBarProps, Box, IconButton, Toolbar, useMediaQuery, useTheme} from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { SideMenu } from "./components/SideMenu";
 import { CocktailDetails } from "./components/CocktailDetails";
@@ -9,7 +9,7 @@ import { Link, useParams } from "react-router-dom";
 import { NotFound } from "./components/NotFound";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
-import { menuItems } from "./constants/menu";
+import { menuItemsData } from "./components/SideMenu/constants";
 
 const drawerWidth = 240;
 
@@ -78,28 +78,23 @@ function App() {
       <AppContainer>
             <AppBar position="absolute" open={!isMobile && isSideMenuOpen}>
                 <Toolbar>
-                    {isMobile ? (
-                        <Stack direction="row" spacing={1} sx={{ width: '100%', justifyContent: 'center' }}>
-                            {menuItems.map((item) => (
-                                <IconButton component={Link} to={item.path} key={item.text} color="inherit">
-                                    {item.icon}
-                                </IconButton>
-                            ))}
-                        </Stack>
-                    ) : (
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerToggle}
-                            edge="start"
-                            sx={{
-                                marginRight: 5,
-                                ...(isSideMenuOpen && { display: 'none' }),
-                            }}
-                        >
-                            <MenuIcon />
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerToggle}
+                        edge="start"
+                        sx={{
+                            marginRight: 5,
+                            ...(isSideMenuOpen && { display: 'none' }),
+                        }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    {isMobile && menuItemsData.map(({ text, Icon, path }) => (
+                        <IconButton component={Link} to={path} key={text} color="inherit">
+                            <Icon />
                         </IconButton>
-                    )}
+                    ))}
                 </Toolbar>
             </AppBar>
             {!isMobile && (

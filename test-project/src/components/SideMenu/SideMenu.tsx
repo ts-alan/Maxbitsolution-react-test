@@ -1,7 +1,7 @@
 import { Drawer as MuiDrawer, List, ListItem, ListItemButton, ListItemText, Toolbar, ListItemIcon } from "@mui/material";
 import { type CSSObject, type Theme, styled } from "@mui/material/styles";
 import { Link, useLocation } from "react-router-dom";
-import { menuItems } from "../../constants/menu";
+import { menuItemsData } from "./constants";
 
 const drawerWidth = 240;
 
@@ -55,11 +55,11 @@ export function SideMenu({ isOpen }: SideMenuProps) {
         <>
             <Toolbar />
             <List>
-                {menuItems.map((item) => (
-                    <ListItem component={Link} to={item.path} key={item.text} disablePadding>
-                        <ListItemButton selected={location.pathname === item.path}>
-                            <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} sx={{ opacity: isOpen ? 1 : 0 }}/>
+                {menuItemsData.map(({ text, Icon, path }) => (
+                    <ListItem component={Link} to={path} key={text} disablePadding>
+                        <ListItemButton selected={location.pathname === path}>
+                            <ListItemIcon><Icon /></ListItemIcon>
+                            <ListItemText primary={text} sx={{ opacity: isOpen ? 1 : 0 }}/>
                         </ListItemButton>
                     </ListItem>
                 ))}
