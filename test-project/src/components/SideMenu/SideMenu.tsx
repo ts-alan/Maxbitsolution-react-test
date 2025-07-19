@@ -1,5 +1,6 @@
 import { Drawer as MuiDrawer, List, ListItem, ListItemButton, ListItemText, Toolbar, ListItemIcon } from "@mui/material";
 import { type CSSObject, type Theme, styled } from "@mui/material/styles";
+import { type JSX } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MargaritaIcon from '@mui/icons-material/LocalBar';
 import MojitoIcon from '@mui/icons-material/LocalDrink';

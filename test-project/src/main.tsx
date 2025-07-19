@@ -5,7 +5,7 @@ import App from './App.tsx'
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
 import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
-import { NotFound } from "./components/NotFound.tsx";
+import { NotFound } from "./components/NotFound";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme.ts";
 

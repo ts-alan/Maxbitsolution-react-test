@@ -57,10 +57,7 @@ interface CocktailDetailsProps {
     drink: Drink;
 }
 
-interface Ingredient {
-    ingredient: string;
-    measure: string;
-}
+
 
 // A simple type guard to filter out null/undefined values.
 function isNotNill<T>(value: T): value is NonNullable<T> {
