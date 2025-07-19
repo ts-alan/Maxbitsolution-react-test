@@ -1,9 +1,9 @@
 import { useGetCocktailByNameQuery } from './store/app/apiSlice';
-import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { SideMenu } from "./components/SideMenu";
 import { CocktailDetails } from "./components/CocktailDetails";
+import { useParams } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -17,18 +17,17 @@ const MainContentContainer = styled(Box)(({ theme }) => ({
 }));
 
 function App() {
-    const [menuItem, setMenuItem] = useState('margarita');
-
+    const { cocktailName } = useParams<{ cocktailName: string }>();
     const {
         data,
         isFetching
-    } = useGetCocktailByNameQuery(menuItem);
+    } = useGetCocktailByNameQuery(cocktailName || 'margarita');
 
     const drink = data?.drinks?.[0];
 
     return (
       <AppContainer>
-        <SideMenu onSelectItem={setMenuItem} activeItem={menuItem} />
+        <SideMenu />
         <MainContentContainer>
             {isFetching ? (
                 <p>Loading...</p>
