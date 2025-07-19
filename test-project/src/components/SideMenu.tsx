@@ -47,17 +47,23 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
+interface SideMenuItem {
+    text: string;
+    icon: JSX.Element;
+    path: string;
+}
+
 interface SideMenuProps {
     isMobile: boolean;
     isOpen: boolean;
     onClose: () => void;
 }
 
-const menuItems = [
-    { text: 'Margarita', icon: <MargaritaIcon /> },
-    { text: 'Mojito', icon: <MojitoIcon /> },
-    { text: 'A1', icon: <A1Icon /> },
-    { text: 'Kir', icon: <KirIcon /> }
+const menuItems: readonly SideMenuItem[] = [
+    { text: 'Margarita', icon: <MargaritaIcon />, path: '/margarita' },
+    { text: 'Mojito', icon: <MojitoIcon />, path: '/mojito' },
+    { text: 'A1', icon: <A1Icon />, path: '/a1' },
+    { text: 'Kir', icon: <KirIcon />, path: '/kir' }
 ];
 
 export function SideMenu({ isMobile, isOpen, onClose }: SideMenuProps) {
@@ -68,8 +74,8 @@ export function SideMenu({ isMobile, isOpen, onClose }: SideMenuProps) {
             <Toolbar />
             <List>
                 {menuItems.map((item) => (
-                    <ListItem component={Link} to={`/${item.text.toLowerCase()}`} key={item.text} disablePadding>
-                        <ListItemButton selected={location.pathname === `/${item.text.toLowerCase()}`} onClick={isMobile ? onClose : undefined}>
+                    <ListItem component={Link} to={item.path} key={item.text} disablePadding>
+                        <ListItemButton selected={location.pathname === item.path} onClick={isMobile ? onClose : undefined}>
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText primary={item.text} sx={{ opacity: isOpen ? 1 : 0 }}/>
                         </ListItemButton>

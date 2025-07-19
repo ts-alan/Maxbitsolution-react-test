@@ -36,6 +36,13 @@ const DrinkImage = styled('img')(({ theme }) => ({
 const drinkTitleStyles = { mt: 0 };
 const sectionTitleStyles = { mt: 2 };
 
+// TheCocktailDB API provides up to 15 ingredients.
+const MAX_INGREDIENTS = 15;
+
+// Use Template Literal Types for precise key descriptions.
+type IngredientKey = `strIngredient${number}`;
+type MeasureKey = `strMeasure${number}`;
+
 interface Drink {
     strDrink: string;
     strCategory: string;
@@ -43,22 +50,30 @@ interface Drink {
     strGlass: string;
     strInstructions: string;
     strDrinkThumb: string;
-    [key: string]: string | undefined;
+    [key: IngredientKey | MeasureKey]: string | null | undefined;
 }
 
 interface CocktailDetailsProps {
     drink: Drink;
 }
 
-// TheCocktailDB API provides up to 15 ingredients.
-const MAX_INGREDIENTS = 15;
+interface Ingredient {
+    ingredient: string;
+    measure: string;
+}
+
+// A simple type guard to filter out null/undefined values.
+function isNotNill<T>(value: T): value is NonNullable<T> {
+    return value !== null && value !== undefined;
+}
 
 export function CocktailDetails({ drink }: CocktailDetailsProps) {
     const ingredients = Array.from({ length: MAX_INGREDIENTS }, (_, i) => {
-        const ingredient = drink[`strIngredient${i + 1}`];
-        const measure = drink[`strMeasure${i + 1}`];
-        return (ingredient) ? { ingredient, measure: measure?.trim() || '' } : null;
-    }).filter((item): item is NonNullable<typeof item> => !!item);
+        const ingredient = drink[`strIngredient${i + 1}` as IngredientKey];
+        const measure = drink[`strMeasure${i + 1}` as MeasureKey];
+
+        return ingredient ? { ingredient, measure: measure?.trim() || '' } : null;
+    }).filter(isNotNill);
 
 
     return (

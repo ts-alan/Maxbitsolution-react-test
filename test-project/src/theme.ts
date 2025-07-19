@@ -1,6 +1,6 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, type ThemeOptions } from '@mui/material/styles';
 
-const theme = createTheme({
+const themeOptions = {
     breakpoints: {
         values: {
             xs: 360,
@@ -10,6 +10,8 @@ const theme = createTheme({
             xl: 1536,
         },
     },
-});
+} satisfies ThemeOptions;
+
+const theme = createTheme(themeOptions);
 
 export default theme; 
