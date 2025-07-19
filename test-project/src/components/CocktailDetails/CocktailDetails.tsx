@@ -1,5 +1,6 @@
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import type { Drink } from "../../store/app/types";
 
 const DrinkDetailsContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -43,21 +44,9 @@ const MAX_INGREDIENTS = 15;
 type IngredientKey = `strIngredient${number}`;
 type MeasureKey = `strMeasure${number}`;
 
-interface Drink {
-    strDrink: string;
-    strCategory: string;
-    strAlcoholic: string;
-    strGlass: string;
-    strInstructions: string;
-    strDrinkThumb: string;
-    [key: IngredientKey | MeasureKey]: string | null | undefined;
-}
-
 interface CocktailDetailsProps {
     drink: Drink;
 }
-
-
 
 // A simple type guard to filter out null/undefined values.
 function isNotNill<T>(value: T): value is NonNullable<T> {

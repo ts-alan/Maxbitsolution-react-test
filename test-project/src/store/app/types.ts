@@ -1,4 +1,7 @@
-interface Drink {
+type IngredientKey = `strIngredient${number}`;
+type MeasureKey = `strMeasure${number}`;
+
+export type Drink = {
     idDrink: string;
     strDrink: string;
     strCategory: string;
@@ -6,8 +9,9 @@ interface Drink {
     strGlass: string;
     strInstructions: string;
     strDrinkThumb: string;
-    [key: string]: string | undefined;
-}
+} & {
+    [K in IngredientKey | MeasureKey]?: string | null;
+};
 
 export interface CocktailsResponse {
     drinks: Drink[];

@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { CocktailDetails } from './CocktailDetails';
 
 const mockDrink = {
+    idDrink: '11007',
     strDrink: 'Margarita',
     strCategory: 'Ordinary Drink',
     strAlcoholic: 'Alcoholic',
