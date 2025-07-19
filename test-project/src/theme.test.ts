@@ -10,9 +10,9 @@ describe('Theme configuration', () => {
     });
 
     it('should have responsive design requirements', () => {
-        // Проверяем, что минимальная ширина соответствует требованиям
+        // Check if the minimum width meets the requirements
         expect(theme.breakpoints.values.xs).toBe(360);
-        // Проверяем, что максимальная ширина соответствует требованиям
+        // Check if the maximum width meets the requirements
         expect(theme.breakpoints.values.lg).toBe(1024);
     });
 }); 

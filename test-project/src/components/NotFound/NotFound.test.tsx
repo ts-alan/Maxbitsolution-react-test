@@ -10,13 +10,13 @@ describe('NotFound component', () => {
             </MemoryRouter>
         );
 
-        // Ищем заголовок "404"
+        // Check for the "404" heading
         expect(screen.getByRole('heading', { name: '404' })).toBeInTheDocument();
         
-        // Ищем текст "Page Not Found"
+        // Check for the "Page Not Found" text
         expect(screen.getByText('Page Not Found')).toBeInTheDocument();
 
-        // Проверяем наличие ссылки на главную страницу
+        // Check for the link to the homepage
         const homeLink = screen.getByRole('link', { name: /go back to home/i });
         expect(homeLink).toBeInTheDocument();
         expect(homeLink).toHaveAttribute('href', '/');

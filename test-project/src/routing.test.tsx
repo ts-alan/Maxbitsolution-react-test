@@ -66,7 +66,7 @@ describe('Routing integration tests', () => {
         const router = createTestRouter(['/MARGARITA']);
         renderWithRouter(router);
 
-        // Должен загружаться и показывать результаты для margarita
+        // Should load and show results for "margarita"
         await waitFor(() => {
             expect(screen.getByText('Loading...')).toBeInTheDocument();
         });

@@ -21,19 +21,19 @@ describe('CocktailDetails component', () => {
     it('renders all cocktail details correctly', () => {
         render(<CocktailDetails drink={mockDrink} />);
 
-        // Проверяем наличие основной информации
+        // Check for the main information
         expect(screen.getByRole('heading', { name: 'Margarita' })).toBeInTheDocument();
         expect(screen.getByText('Ordinary Drink')).toBeInTheDocument();
         expect(screen.getByText('Alcoholic')).toBeInTheDocument();
         expect(screen.getByText('Cocktail glass')).toBeInTheDocument();
         expect(screen.getByText(/Rub the rim of the glass/)).toBeInTheDocument();
 
-        // Проверяем наличие изображения
+        // Check for the image
         const image = screen.getByRole('img', { name: 'Margarita' });
         expect(image).toBeInTheDocument();
         expect(image).toHaveAttribute('src', 'margarita.jpg');
 
-        // Проверяем список ингредиентов
+        // Check for the list of ingredients
         expect(screen.getByText(/1 1\/2 oz Tequila/)).toBeInTheDocument();
         expect(screen.getByText(/1\/2 oz Triple sec/)).toBeInTheDocument();
         expect(screen.getByText(/1 oz Lime juice/)).toBeInTheDocument();
