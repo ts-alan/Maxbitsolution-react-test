@@ -7,6 +7,7 @@ import { SideMenu } from "./components/SideMenu";
 import { CocktailDetails } from "./components/CocktailDetails";
 import { Link, useParams } from "react-router-dom";
 import { NotFound } from "./components/NotFound";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
 import { menuItemsData } from "./components/SideMenu/constants";
@@ -104,7 +105,7 @@ function App() {
             )}
         <MainContentContainer isMobile={isMobile}>
             {isFetching ? (
-                <p>Loading...</p>
+                <LoadingSpinner />
             ) : drink ? (
                 <CocktailDetails drink={drink} />
             ) : (

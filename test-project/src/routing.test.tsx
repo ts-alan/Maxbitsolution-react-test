@@ -68,7 +68,7 @@ describe('Routing integration tests', () => {
 
         // Should load and show results for "margarita"
         await waitFor(() => {
-            expect(screen.getByText('Loading...')).toBeInTheDocument();
+            expect(screen.getByText('Loading cocktail...')).toBeInTheDocument();
         });
     });
 }); 

@@ -34,7 +34,7 @@ describe('App component integration tests', () => {
 
     it('shows loading state initially', () => {
         renderApp('/margarita');
-        expect(screen.getByText('Loading...')).toBeInTheDocument();
+        expect(screen.getByText('Loading cocktail...')).toBeInTheDocument();
     });
 
     it('fetches and displays cocktail details on successful load', async () => {

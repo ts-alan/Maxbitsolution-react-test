@@ -8,11 +8,12 @@ import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom"
 import { NotFound } from "./components/NotFound";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme.ts";
+import { getFirstCocktailCode } from "./utils/cocktail.utils.ts";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/margarita" />,
+    element: <Navigate to={`/${getFirstCocktailCode()}`} />,
   },
   {
     path: "/:cocktailName",
