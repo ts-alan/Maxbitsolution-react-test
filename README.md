@@ -1,69 +1,122 @@
-# React + TypeScript + Vite
+# Cocktail Database Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application that displays cocktail information fetched from TheCocktailDB API.
 
-Currently, two official plugins are available:
+## 📋 Task Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Implement an application that displays data retrieved via API with a responsive interface and proper navigation.
 
-## Expanding the ESLint configuration
+## 🔗 API Details
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Base URL**: `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=<cocktail_code>`
+- **Available cocktail codes**: 
+  - `margarita`
+  - `mojito` 
+  - `a1`
+  - `kir`
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Core Functionality
+- **State Management**: Uses Redux Toolkit for data storage and preventing duplicate API requests
+- **Dynamic Routing**: Each cocktail code generates a menu item and corresponding URL page
+- **Active Menu Highlighting**: Current page is visually highlighted in navigation
+- **Default Route**: First menu item serves as home page with its own URL
+- **Root Redirect**: Accessing "/" redirects to the first menu item's URL
+- **404 Error Handling**: Custom not found page for invalid routes
+- **Lazy Loading**: Images are loaded only when needed for better performance
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Technical Requirements
+- **Responsive Design**: Flexible layout with max-width 1024px and min-width 360px
+- **Cross-browser Support**: Compatible with Chrome and Safari
+- **TypeScript**: Full type safety implementation
+- **Testing**: Jest setup for unit testing
+- **Code Quality**: ESLint configuration for consistent code style
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18 + TypeScript
+- **State Management**: Redux Toolkit + RTK Query
+- **Build Tool**: Vite
+- **Styling**: SCSS + PostCSS
+- **Routing**: React Router
+- **Testing**: Jest + React Testing Library
+- **Linting**: ESLint
+- **Package Manager**: npm
+
+## 🚀 Getting Started
+
+### Installation
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview
+
+```bash
+npm run preview
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # Reusable React components
+│   ├── CocktailDetails/ # Cocktail detail page component
+│   ├── LoadingSpinner/  # Loading indicator
+│   ├── NotFound/        # 404 error page
+│   └── SideMenu/        # Navigation menu
+├── constants/           # Application constants
+├── store/              # Redux store configuration
+│   └── app/            # API slice and types
+├── utils/              # Utility functions
+└── main.tsx            # Application entry point
+```
+
+## 🎯 Requirements Implementation
+
+- ✅ API data fetching with state management
+- ✅ Dynamic menu generation from cocktail codes
+- ✅ URL-based navigation with active states
+- ✅ Default route handling
+- ✅ 404 error page
+- ✅ Responsive design (360px - 1024px)
+- ✅ Image lazy loading
+- ✅ TypeScript implementation
+- ✅ Jest testing setup
+- ✅ ESLint configuration
+
+## 🌐 Browser Support
+
+- Chrome (latest)
+- Safari (latest)
+
+## 📝 License
+
+This project is part of a technical assessment.
