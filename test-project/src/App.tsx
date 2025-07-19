@@ -1,14 +1,15 @@
 import {
     useGetCocktailByNameQuery
 } from './store/app/apiSlice';
-import {AppBar as MuiAppBar, type AppBarProps as MuiAppBarProps, Box, IconButton, Toolbar, useMediaQuery, useTheme} from "@mui/material";
+import {AppBar as MuiAppBar, type AppBarProps as MuiAppBarProps, Box, IconButton, Toolbar, useMediaQuery, useTheme, Stack} from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { SideMenu } from "./components/SideMenu";
 import { CocktailDetails } from "./components/CocktailDetails";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { NotFound } from "./components/NotFound";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
+import { menuItems } from "./constants/menu";
 
 const drawerWidth = 240;
 
@@ -46,9 +47,12 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 
-const MainContentContainer = styled('main')(({theme}) => ({
+const MainContentContainer = styled('main', {
+    shouldForwardProp: (prop) => prop !== 'isMobile',
+})<{isMobile?: boolean}>(({theme, isMobile}) => ({
     flexGrow: 1,
-  padding: theme.spacing(3),
+    padding: theme.spacing(3),
+    marginTop: isMobile ? theme.spacing(8) : 0,
     [theme.breakpoints.down('sm')]: {
         marginLeft: 0,
     }
@@ -72,28 +76,38 @@ function App() {
 
     return (
       <AppContainer>
-            <AppBar position="absolute" open={isSideMenuOpen}>
+            <AppBar position="absolute" open={!isMobile && isSideMenuOpen}>
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerToggle}
-                        edge="start"
-                        sx={{
-                            marginRight: 5,
-                            ...(isSideMenuOpen && { display: 'none' }),
-                        }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {isMobile ? (
+                        <Stack direction="row" spacing={1} sx={{ width: '100%', justifyContent: 'center' }}>
+                            {menuItems.map((item) => (
+                                <IconButton component={Link} to={item.path} key={item.text} color="inherit">
+                                    {item.icon}
+                                </IconButton>
+                            ))}
+                        </Stack>
+                    ) : (
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerToggle}
+                            edge="start"
+                            sx={{
+                                marginRight: 5,
+                                ...(isSideMenuOpen && { display: 'none' }),
+                            }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    )}
                 </Toolbar>
             </AppBar>
-            <SideMenu
-                isMobile={isMobile}
-                isOpen={isSideMenuOpen}
-                onClose={handleDrawerToggle}
-            />
-        <MainContentContainer>
+            {!isMobile && (
+                <SideMenu
+                    isOpen={isSideMenuOpen}
+                />
+            )}
+        <MainContentContainer isMobile={isMobile}>
             {isFetching ? (
                 <p>Loading...</p>
             ) : drink ? (

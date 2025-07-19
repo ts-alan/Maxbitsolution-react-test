@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { SideMenu } from './SideMenu';
 
@@ -8,7 +8,7 @@ describe('SideMenu component', () => {
     it('renders all menu items with correct links', () => {
         render(
             <MemoryRouter>
-                <SideMenu isMobile={false} isOpen={true} onClose={() => {}} />
+                <SideMenu isOpen={true} />
             </MemoryRouter>
         );
 
@@ -19,27 +19,34 @@ describe('SideMenu component', () => {
         });
     });
 
-    it('calls onClose when an item is clicked on mobile', () => {
-        const handleClose = jest.fn();
+    it('renders correctly when open', () => {
         render(
             <MemoryRouter>
-                <SideMenu isMobile={true} isOpen={true} onClose={handleClose} />
+                <SideMenu isOpen={true} />
             </MemoryRouter>
         );
-
-        fireEvent.click(screen.getByText('Margarita'));
-        expect(handleClose).toHaveBeenCalledTimes(1);
+        expect(screen.getByText('Margarita')).toBeInTheDocument();
     });
 
-    it('does not call onClose when an item is clicked on desktop', () => {
-        const handleClose = jest.fn();
+    it('renders correctly when closed', () => {
         render(
             <MemoryRouter>
-                <SideMenu isMobile={false} isOpen={true} onClose={handleClose} />
+                <SideMenu isOpen={false} />
             </MemoryRouter>
         );
+        expect(screen.getByText('Margarita')).toBeInTheDocument();
+        // Check for styles indicating it's closed, e.g., opacity of text is 0
+        const listItemText = screen.getByText('Margarita').parentElement;
+        expect(listItemText).toHaveStyle('opacity: 0');
+    });
 
-        fireEvent.click(screen.getByText('Margarita'));
-        expect(handleClose).not.toHaveBeenCalled();
+    it('highlights the active link', () => {
+        render(
+            <MemoryRouter initialEntries={['/mojito']}>
+                <SideMenu isOpen={true} />
+            </MemoryRouter>
+        );
+        const mojitoButton = screen.getByRole('button', { name: /mojito/i });
+        expect(mojitoButton).toHaveClass('Mui-selected');
     });
 }); 
