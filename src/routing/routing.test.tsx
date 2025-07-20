@@ -2,10 +2,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
-import { store } from "./store/store";
-import { CocktailPage, NotFoundPage } from "./pages";
-import theme from "./theme";
-import { server } from "./__mocks__/server";
+import { store } from "../store/store";
+import { CocktailPage, NotFoundPage } from "../pages";
+import theme from "../theme";
+import { server } from "../__mocks__/server";
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
@@ -73,4 +73,4 @@ describe("Routing integration tests", () => {
       expect(screen.getByText("Loading cocktail...")).toBeInTheDocument();
     });
   });
-});
+}); 

@@ -99,6 +99,9 @@ src/
 ├── pages/              # Application pages
 │   ├── CocktailPage/    # Cocktail detail page
 │   └── NotFoundPage/    # 404 error page
+├── routing/            # Application routing
+│   ├── router.tsx       # Router configuration
+│   └── routing.test.tsx # Routing tests
 ├── i18n/               # Internationalization
 │   └── locales/         # Translation files (en)
 ├── constants/           # Application constants
