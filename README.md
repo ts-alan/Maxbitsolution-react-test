@@ -27,6 +27,7 @@ Implement an application that displays data retrieved via API with a responsive 
 - **404 Error Handling**: Custom not found page for invalid routes
 - **Lazy Loading**: Images are loaded only when needed for better performance
 - **Internationalization**: English language support with react-i18next
+- **Environment Configuration**: Configurable API endpoints via environment variables
 
 ### Technical Requirements
 
@@ -54,6 +55,17 @@ Implement an application that displays data retrieved via API with a responsive 
 ```bash
 npm install
 ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+# API Configuration
+VITE_API_BASE_URL=https://www.thecocktaildb.com/api/json/v1/1/
+```
+
+See `env.example` for the complete list of available environment variables.
 
 ### Development
 
@@ -102,6 +114,9 @@ src/
 ├── routing/            # Application routing
 │   ├── router.tsx       # Router configuration
 │   └── routing.test.tsx # Routing tests
+├── config/             # Application configuration
+│   ├── index.ts         # Environment variables and config
+│   └── config.test.ts   # Configuration tests
 ├── i18n/               # Internationalization
 │   └── locales/         # Translation files (en)
 ├── constants/           # Application constants
@@ -124,6 +139,7 @@ src/
 - ✅ Jest testing setup
 - ✅ ESLint configuration
 - ✅ Internationalization setup (English)
+- ✅ Environment variables configuration
 
 ## 🌐 Browser Support
 

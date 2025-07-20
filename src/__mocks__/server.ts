@@ -1,5 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
+import config from "../config";
 
 const mockDrink = {
   drinks: [
@@ -18,7 +19,7 @@ const mockDrink = {
 
 const handlers = [
   http.get(
-    "https://www.thecocktaildb.com/api/json/v1/1/search.php",
+    `${config.api.baseUrl}search.php`,
     ({ request }) => {
       const url = new URL(request.url);
       const cocktailName = url.searchParams.get("s");

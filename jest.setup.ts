@@ -3,6 +3,19 @@ import "whatwg-fetch";
 import { TextEncoder, TextDecoder } from "util";
 import { TransformStream } from "stream/web";
 
+// Set up environment variables for tests
+process.env['VITE_API_BASE_URL'] = "https://www.thecocktaildb.com/api/json/v1/1/";
+
+// Mock config module to avoid import.meta issues in tests
+jest.mock('./src/config', () => ({
+  __esModule: true,
+  default: {
+    api: {
+      baseUrl: "https://www.thecocktaildb.com/api/json/v1/1/",
+    },
+  },
+}));
+
 // Mock react-i18next
 jest.mock("react-i18next", () => ({
   useTranslation: () => ({
