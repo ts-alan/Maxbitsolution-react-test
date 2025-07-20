@@ -3,4 +3,4 @@ export enum CocktailCodeEnum {
   Mojito = "mojito",
   A1 = "a1",
   Kir = "kir",
-}
+} 

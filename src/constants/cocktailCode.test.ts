@@ -1,4 +1,4 @@
-import { CocktailCodeEnum } from "./cocktail-code.enum";
+import { CocktailCodeEnum } from "./cocktailCode";
 
 describe("CocktailCodeEnum", () => {
   it("should have correct cocktail codes", () => {
@@ -15,4 +15,4 @@ describe("CocktailCodeEnum", () => {
     expect(actualCocktails).toEqual(expect.arrayContaining(expectedCocktails));
     expect(actualCocktails).toHaveLength(4);
   });
-});
+}); 

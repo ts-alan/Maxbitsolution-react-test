@@ -1,4 +1,4 @@
-import { CocktailCodeEnum } from "../constants/cocktail-code.enum";
+import { CocktailCodeEnum } from "../constants/cocktailCode";
 import MargaritaIcon from "@mui/icons-material/LocalBar";
 import MojitoIcon from "@mui/icons-material/LocalDrink";
 import A1Icon from "@mui/icons-material/WineBar";

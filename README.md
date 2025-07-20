@@ -120,6 +120,8 @@ src/
 ├── i18n/               # Internationalization
 │   └── locales/         # Translation files (en)
 ├── constants/           # Application constants
+│   ├── cocktailCode.ts  # Cocktail enum definitions
+│   └── cocktailCode.test.ts # Constants tests
 ├── store/              # Redux store configuration
 │   └── app/            # API slice and types
 ├── utils/              # Utility functions

@@ -3,7 +3,7 @@ import {
   generateMenuItems,
   getFirstCocktailCode,
 } from "./cocktail.utils";
-import { CocktailCodeEnum } from "../constants/cocktail-code.enum";
+import { CocktailCodeEnum } from "../constants/cocktailCode";
 
 describe("cocktail utils", () => {
   describe("capitalizeFirst", () => {
