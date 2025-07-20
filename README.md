@@ -1,153 +1,59 @@
-# Cocktail Database Application
+# Cocktail Database
 
-A React-based web application that displays cocktail information fetched from TheCocktailDB API.
+React application for browsing cocktail recipes from TheCocktailDB API.
 
-## 📋 Task Description
-
-Implement an application that displays data retrieved via API with a responsive interface and proper navigation.
-
-## 🔗 API Details
-
-- **Base URL**: `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=<cocktail_code>`
-- **Available cocktail codes**:
-  - `margarita`
-  - `mojito`
-  - `a1`
-  - `kir`
-
-## ✨ Features
-
-### Core Functionality
-
-- **State Management**: Uses Redux Toolkit for data storage and preventing duplicate API requests
-- **Dynamic Routing**: Each cocktail code generates a menu item and corresponding URL page
-- **Active Menu Highlighting**: Current page is visually highlighted in navigation
-- **Default Route**: First menu item serves as home page with its own URL
-- **Root Redirect**: Accessing "/" redirects to the first menu item's URL
-- **404 Error Handling**: Custom not found page for invalid routes
-- **Lazy Loading**: Images are loaded only when needed for better performance
-- **Internationalization**: English language support with react-i18next
-- **Environment Configuration**: Configurable API endpoints via environment variables
-
-### Technical Requirements
-
-- **Responsive Design**: Flexible layout with max-width 1024px and min-width 360px
-- **Cross-browser Support**: Compatible with Chrome and Safari
-- **TypeScript**: Full type safety implementation
-- **Testing**: Jest setup for unit testing
-- **Code Quality**: ESLint configuration for consistent code style
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 18 + TypeScript
-- **State Management**: Redux Toolkit + RTK Query
-- **Build Tool**: Vite
-- **Styling**: SCSS + PostCSS
-- **Routing**: React Router
-- **Testing**: Jest + React Testing Library
-- **Linting**: ESLint
-- **Package Manager**: npm
-
-## 🚀 Getting Started
-
-### Installation
+## Setup
 
 ```bash
 npm install
-```
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-# API Configuration
-VITE_API_BASE_URL=https://www.thecocktaildb.com/api/json/v1/1/
-```
-
-See `env.example` for the complete list of available environment variables.
-
-### Development
-
-```bash
 npm run dev
 ```
 
-### Testing
+## Available Scripts
 
-```bash
-# Run tests
-npm test
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run lint` - Check code style
 
-# Run tests in watch mode
-npm run test:watch
+## Configuration
 
-# Generate coverage report
-npm run test:coverage
+Create `.env` file:
+```
+VITE_API_BASE_URL=https://www.thecocktaildb.com/api/json/v1/1
 ```
 
-### Build
+## Architecture
 
-```bash
-npm run build
-```
+- **Components**: Presentation layer with container/presentational pattern
+- **Hooks**: Business logic and state management  
+- **Utils**: Data transformation utilities
+- **Store**: Redux Toolkit for API state management
+- **Routing**: React Router with dynamic menu generation
 
-### Preview
+## Tech Stack
 
-```bash
-npm run preview
-```
+- React 18 + TypeScript
+- Redux Toolkit + RTK Query
+- Vite + Jest
+- Material-UI
+- React Router
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── components/          # Reusable React components
-│   ├── CocktailDetails/ # Cocktail detail display component
-│   ├── Layout/          # Application layout wrapper
-│   ├── LoadingSpinner/  # Loading indicator
-│   ├── NotFound/        # 404 error component
-│   └── SideMenu/        # Navigation menu
-├── pages/              # Application pages
-│   ├── CocktailPage/    # Cocktail detail page
-│   └── NotFoundPage/    # 404 error page
-├── routing/            # Application routing
-│   ├── router.tsx       # Router configuration
-│   └── routing.test.tsx # Routing tests
-├── config/             # Application configuration
-│   ├── index.ts         # Environment variables and config
-│   └── config.test.ts   # Configuration tests
-├── i18n/               # Internationalization
-│   └── locales/         # Translation files (en)
-├── constants/           # Application constants
-│   ├── cocktailCode.ts  # Cocktail enum definitions
-│   └── cocktailCode.test.ts # Constants tests
-├── store/              # Redux store configuration
-│   └── app/            # API slice and types
-├── utils/              # Utility functions
-└── main.tsx            # Application entry point
+├── components/
+│   ├── CocktailDetails/
+│   ├── Layout/
+│   ├── LoadingSpinner/
+│   ├── NotFound/
+│   └── SideMenu/
+├── hooks/
+├── pages/
+├── routing/
+├── config/
+├── constants/
+├── store/
+└── utils/
 ```
-
-## 🎯 Requirements Implementation
-
-- ✅ API data fetching with state management
-- ✅ Dynamic menu generation from cocktail codes
-- ✅ URL-based navigation with active states
-- ✅ Default route handling
-- ✅ 404 error page
-- ✅ Responsive design (360px - 1024px)
-- ✅ Image lazy loading
-- ✅ TypeScript implementation
-- ✅ Jest testing setup
-- ✅ ESLint configuration
-- ✅ Internationalization setup (English)
-- ✅ Environment variables configuration
-
-## 🌐 Browser Support
-
-- Chrome (latest)
-- Safari (latest)
-
-## 📝 License
-
-This project is part of a technical assessment.
