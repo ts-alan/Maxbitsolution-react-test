@@ -90,10 +90,17 @@ npm run preview
 ```
 src/
 ├── components/          # Reusable React components
-│   ├── CocktailDetails/ # Cocktail detail page component
+│   ├── CocktailDetails/ # Cocktail detail display component
+│   ├── LanguageSwitcher/# Language switching component  
+│   ├── Layout/          # Application layout wrapper
 │   ├── LoadingSpinner/  # Loading indicator
-│   ├── NotFound/        # 404 error page
+│   ├── NotFound/        # 404 error component
 │   └── SideMenu/        # Navigation menu
+├── pages/              # Application pages
+│   ├── CocktailPage/    # Cocktail detail page
+│   └── NotFoundPage/    # 404 error page
+├── i18n/               # Internationalization
+│   └── locales/         # Translation files (en, ru)
 ├── constants/           # Application constants
 ├── store/              # Redux store configuration
 │   └── app/            # API slice and types

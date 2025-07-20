@@ -3,8 +3,7 @@ import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { store } from "./store/store";
-import App from "./App";
-import { NotFound } from "./components/NotFound";
+import { CocktailPage, NotFoundPage } from "./pages";
 import theme from "./theme";
 import { server } from "./__mocks__/server";
 
@@ -22,11 +21,11 @@ const createTestRouter = (initialEntries: string[]) => {
       },
       {
         path: "/:cocktailName",
-        element: <App />,
+        element: <CocktailPage />,
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: <NotFoundPage />,
       },
     ],
     {

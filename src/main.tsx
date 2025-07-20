@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.scss";
-import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
 import {
@@ -9,10 +8,10 @@ import {
   createBrowserRouter,
   Navigate,
 } from "react-router-dom";
-import { NotFound } from "./components/NotFound";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme.ts";
 import { getFirstCocktailCode } from "./utils/cocktail.utils.ts";
+import { CocktailPage, NotFoundPage } from "./pages";
 import "./i18n";
 
 const router = createBrowserRouter([
@@ -22,11 +21,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/:cocktailName",
-    element: <App />,
+    element: <CocktailPage />,
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <NotFoundPage />,
   },
 ]);
 
