@@ -5,29 +5,24 @@ import { TransformStream } from "stream/web";
 
 if (typeof global.BroadcastChannel === "undefined") {
   global.BroadcastChannel = class {
-    constructor(_name: string) {}
-    postMessage(_message: any) {}
+    constructor() {}
+    postMessage() {}
     close() {}
-    onmessage: ((this: BroadcastChannel, ev: MessageEvent) => any) | null =
+    onmessage: ((this: BroadcastChannel, ev: MessageEvent) => unknown) | null =
       null;
-    onmessageerror: ((this: BroadcastChannel, ev: MessageEvent) => any) | null =
-      null;
-    addEventListener(
-      _type: string,
-      _listener: EventListenerOrEventListenerObject,
-      _options?: boolean | AddEventListenerOptions,
-    ): void {}
-    removeEventListener(
-      _type: string,
-      _listener: EventListenerOrEventListenerObject,
-      _options?: boolean | EventListenerOptions,
-    ): void {}
-    dispatchEvent(_event: Event): boolean {
+    onmessageerror:
+      | ((this: BroadcastChannel, ev: MessageEvent) => unknown)
+      | null = null;
+    addEventListener(): void {}
+    removeEventListener(): void {}
+    dispatchEvent(): boolean {
       return false;
     }
-  } as any;
+  } as unknown as typeof BroadcastChannel;
 }
 
 global.TextEncoder = TextEncoder;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 global.TextDecoder = TextDecoder as any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 global.TransformStream = TransformStream as any;
