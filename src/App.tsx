@@ -14,9 +14,11 @@ import { CocktailDetails } from "./components/CocktailDetails";
 import { Link, useParams } from "react-router-dom";
 import { NotFound } from "./components/NotFound";
 import { LoadingSpinner } from "./components/LoadingSpinner";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { menuItemsData } from "./components/SideMenu/constants";
+import { getMenuItemsData } from "./components/SideMenu/constants";
+import { useTranslation } from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -72,6 +74,8 @@ function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(!isMobile);
+  const { t } = useTranslation();
+  const menuItemsData = getMenuItemsData(t);
 
   const handleDrawerToggle = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
@@ -101,6 +105,8 @@ function App() {
                 <Icon />
               </IconButton>
             ))}
+          <Box sx={{ flexGrow: 1 }} />
+          <LanguageSwitcher />
         </Toolbar>
       </AppBar>
       {!isMobile && <SideMenu isOpen={isSideMenuOpen} />}

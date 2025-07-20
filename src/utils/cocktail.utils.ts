@@ -16,9 +16,9 @@ export function capitalizeFirst(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function generateMenuItems() {
+export function generateMenuItems(t: (key: string) => string) {
   return Object.values(CocktailCodeEnum).map((code) => ({
-    text: capitalizeFirst(code),
+    text: t(`cocktails.${code}`),
     Icon: iconMap[code],
     path: `/${code}`,
     code,

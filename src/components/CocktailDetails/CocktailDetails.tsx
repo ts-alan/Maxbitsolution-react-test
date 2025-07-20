@@ -1,5 +1,6 @@
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
 import type { Drink } from "../../store/app/types";
 
 const DrinkDetailsContainer = styled(Box)(({ theme }) => ({
@@ -54,6 +55,7 @@ function isNotNill<T>(value: T): value is NonNullable<T> {
 }
 
 export function CocktailDetails({ drink }: CocktailDetailsProps) {
+  const { t } = useTranslation();
   const ingredients = Array.from({ length: MAX_INGREDIENTS }, (_, i) => {
     const ingredient = drink[`strIngredient${i + 1}` as IngredientKey];
     const measure = drink[`strMeasure${i + 1}` as MeasureKey];
@@ -68,22 +70,22 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
           {drink.strDrink}
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">
-          {drink.strCategory}
+          {t("cocktails.category")}: {drink.strCategory}
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">
-          {drink.strAlcoholic}
+          {t("cocktails.type")}: {drink.strAlcoholic}
         </Typography>
         <Typography variant="body2" color="text.secondary" gutterBottom>
-          {drink.strGlass}
+          {t("cocktails.glass")}: {drink.strGlass}
         </Typography>
 
         <Typography variant="h6" sx={sectionTitleStyles}>
-          Instructions:
+          {t("cocktails.instructions")}:
         </Typography>
         <Typography variant="body1">{drink.strInstructions}</Typography>
 
         <Typography variant="h6" sx={sectionTitleStyles}>
-          List of ingredients:
+          {t("cocktails.ingredients")}:
         </Typography>
         <List dense>
           {ingredients.map((item, index) => (

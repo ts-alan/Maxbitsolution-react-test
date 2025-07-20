@@ -9,7 +9,8 @@ import {
 } from "@mui/material";
 import { type CSSObject, type Theme, styled } from "@mui/material/styles";
 import { Link, useLocation } from "react-router-dom";
-import { menuItemsData } from "./constants";
+import { getMenuItemsData } from "./constants";
+import { useTranslation } from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -57,6 +58,8 @@ interface SideMenuProps {
 
 export function SideMenu({ isOpen }: SideMenuProps) {
   const location = useLocation();
+  const { t } = useTranslation();
+  const menuItemsData = getMenuItemsData(t);
 
   const drawerContent = (
     <>

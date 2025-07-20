@@ -15,8 +15,18 @@ describe("cocktail utils", () => {
   });
 
   describe("generateMenuItems", () => {
+    const mockT = (key: string) => {
+      const translations: Record<string, string> = {
+        "cocktails.margarita": "Margarita",
+        "cocktails.mojito": "Mojito",
+        "cocktails.a1": "A1",
+        "cocktails.kir": "Kir",
+      };
+      return translations[key] || key;
+    };
+
     it("should generate menu items from enum", () => {
-      const menuItems = generateMenuItems();
+      const menuItems = generateMenuItems(mockT);
 
       expect(menuItems).toHaveLength(4);
       expect(menuItems[0]).toMatchObject({
@@ -28,7 +38,7 @@ describe("cocktail utils", () => {
     });
 
     it("should include all cocktail codes", () => {
-      const menuItems = generateMenuItems();
+      const menuItems = generateMenuItems(mockT);
       const codes = menuItems.map((item) => item.code);
 
       expect(codes).toEqual(Object.values(CocktailCodeEnum));

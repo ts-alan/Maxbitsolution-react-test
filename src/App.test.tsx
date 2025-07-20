@@ -45,7 +45,7 @@ describe("App component integration tests", () => {
       ).toBeInTheDocument();
     });
 
-    expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
+    expect(screen.getByText("Category: Ordinary Drink")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Margarita" })).toBeInTheDocument();
   });
 

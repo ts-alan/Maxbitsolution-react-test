@@ -25,9 +25,9 @@ describe("CocktailDetails component", () => {
     expect(
       screen.getByRole("heading", { name: "Margarita" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
-    expect(screen.getByText("Alcoholic")).toBeInTheDocument();
-    expect(screen.getByText("Cocktail glass")).toBeInTheDocument();
+    expect(screen.getByText("Category: Ordinary Drink")).toBeInTheDocument();
+    expect(screen.getByText("Type: Alcoholic")).toBeInTheDocument();
+    expect(screen.getByText("Glass: Cocktail glass")).toBeInTheDocument();
     expect(screen.getByText(/Rub the rim of the glass/)).toBeInTheDocument();
 
     // Check for the image

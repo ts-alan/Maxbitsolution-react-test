@@ -13,6 +13,7 @@ import { NotFound } from "./components/NotFound";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme.ts";
 import { getFirstCocktailCode } from "./utils/cocktail.utils.ts";
+import "./i18n";
 
 const router = createBrowserRouter([
   {

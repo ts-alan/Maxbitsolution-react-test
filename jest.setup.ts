@@ -3,6 +3,43 @@ import "whatwg-fetch";
 import { TextEncoder, TextDecoder } from "util";
 import { TransformStream } from "stream/web";
 
+// Mock react-i18next
+jest.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      // Простой мок переводов для тестов
+      const translations: Record<string, string> = {
+        "cocktails.margarita": "Margarita",
+        "cocktails.mojito": "Mojito",
+        "cocktails.a1": "A1",
+        "cocktails.kir": "Kir",
+        "cocktails.loading": "Loading cocktail...",
+        "cocktails.category": "Category",
+        "cocktails.type": "Type",
+        "cocktails.glass": "Glass",
+        "cocktails.instructions": "Instructions",
+        "cocktails.ingredients": "Ingredients",
+        "notFound.title": "404",
+        "notFound.subtitle": "Page Not Found",
+        "notFound.description": "Sorry, we couldn't find the page you're looking for.",
+        "notFound.goHome": "Go back to Home",
+        "language.switch": "Switch Language",
+        "language.english": "English",
+        "language.russian": "Russian",
+      };
+      return translations[key] || key;
+    },
+    i18n: {
+      changeLanguage: jest.fn(),
+      language: "en",
+    },
+  }),
+  initReactI18next: {
+    type: "3rdParty",
+    init: jest.fn(),
+  },
+}));
+
 if (typeof global.BroadcastChannel === "undefined") {
   global.BroadcastChannel = class {
     constructor() {}
