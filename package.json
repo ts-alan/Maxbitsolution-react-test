@@ -47,6 +47,7 @@
     "lint-staged": "^16.1.2",
     "msw": "^2.3.1",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "sass": "^1.89.2",
     "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2",
@@ -61,10 +62,12 @@
       "prettier --write"
     ],
     "*.{css,scss}": [
-      "prettier --write"  
+      "prettier --write"
     ]
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }

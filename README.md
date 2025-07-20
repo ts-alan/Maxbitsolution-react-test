@@ -9,15 +9,16 @@ Implement an application that displays data retrieved via API with a responsive 
 ## 🔗 API Details
 
 - **Base URL**: `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=<cocktail_code>`
-- **Available cocktail codes**: 
+- **Available cocktail codes**:
   - `margarita`
-  - `mojito` 
+  - `mojito`
   - `a1`
   - `kir`
 
 ## ✨ Features
 
 ### Core Functionality
+
 - **State Management**: Uses Redux Toolkit for data storage and preventing duplicate API requests
 - **Dynamic Routing**: Each cocktail code generates a menu item and corresponding URL page
 - **Active Menu Highlighting**: Current page is visually highlighted in navigation
@@ -27,6 +28,7 @@ Implement an application that displays data retrieved via API with a responsive 
 - **Lazy Loading**: Images are loaded only when needed for better performance
 
 ### Technical Requirements
+
 - **Responsive Design**: Flexible layout with max-width 1024px and min-width 360px
 - **Cross-browser Support**: Compatible with Chrome and Safari
 - **TypeScript**: Full type safety implementation

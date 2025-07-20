@@ -1,3 +1,3 @@
-import { generateMenuItems } from '../../utils/cocktail.utils';
+import { generateMenuItems } from "../../utils/cocktail.utils";
 
-export const menuItemsData = generateMenuItems(); 
+export const menuItemsData = generateMenuItems();
