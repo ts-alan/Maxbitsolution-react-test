@@ -2,11 +2,18 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { NotFound } from "./NotFound";
 
+const mockTranslations = {
+  title: "404",
+  subtitle: "Page Not Found",
+  description: "Sorry, we couldn't find the page you're looking for.",
+  goHome: "Go back to Home",
+};
+
 describe("NotFound component", () => {
   it("renders 404 error and a link to the homepage", () => {
     render(
       <MemoryRouter>
-        <NotFound />
+        <NotFound translations={mockTranslations} />
       </MemoryRouter>,
     );
 

@@ -4,16 +4,12 @@ import {
   Box,
   IconButton,
   Toolbar,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { SideMenu } from '../SideMenu';
+import { SideMenuContainer } from '../SideMenu';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { getMenuItemsData } from '../SideMenu/constants';
-import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 
@@ -63,18 +59,24 @@ const MainContentContainer = styled(Box, {
 
 interface LayoutProps {
   children: ReactNode;
+  isMobile: boolean;
+  isSideMenuOpen: boolean;
+  menuItemsData: Array<{
+    text: string;
+    Icon: React.ComponentType;
+    path: string;
+    code: string;
+  }>;
+  onDrawerToggle: () => void;
 }
 
-export function Layout({ children }: LayoutProps) {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(!isMobile);
-  const { t } = useTranslation();
-  const menuItemsData = getMenuItemsData(t);
-
-  const handleDrawerToggle = () => {
-    setIsSideMenuOpen(!isSideMenuOpen);
-  };
+export function Layout({ 
+  children, 
+  isMobile, 
+  isSideMenuOpen, 
+  menuItemsData, 
+  onDrawerToggle 
+}: LayoutProps) {
 
   return (
     <AppContainer>
@@ -83,7 +85,7 @@ export function Layout({ children }: LayoutProps) {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerToggle}
+            onClick={onDrawerToggle}
             edge="start"
             sx={{
               marginRight: 5,
@@ -100,7 +102,7 @@ export function Layout({ children }: LayoutProps) {
             ))}
         </Toolbar>
       </AppBar>
-      {!isMobile && <SideMenu isOpen={isSideMenuOpen} />}
+      {!isMobile && <SideMenuContainer isOpen={isSideMenuOpen} />}
       <MainContentContainer isMobile={isMobile}>
         {children}
       </MainContentContainer>

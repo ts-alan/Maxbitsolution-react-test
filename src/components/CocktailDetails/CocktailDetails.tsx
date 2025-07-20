@@ -1,7 +1,8 @@
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useTranslation } from "react-i18next";
 import type { Drink } from "../../store/app/types";
+import { formatDrinkData } from "../../utils/drinkTransformers";
+
 
 const DrinkDetailsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -38,57 +39,46 @@ const DrinkImage = styled("img")(({ theme }) => ({
 const drinkTitleStyles = { mt: 0 };
 const sectionTitleStyles = { mt: 2 };
 
-// TheCocktailDB API provides up to 15 ingredients.
-const MAX_INGREDIENTS = 15;
-
-// Use Template Literal Types for precise key descriptions.
-type IngredientKey = `strIngredient${number}`;
-type MeasureKey = `strMeasure${number}`;
-
 interface CocktailDetailsProps {
   drink: Drink;
+  translations: {
+    category: string;
+    type: string;
+    glass: string;
+    instructions: string;
+    ingredients: string;
+  };
 }
 
-// A simple type guard to filter out null/undefined values.
-function isNotNill<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined;
-}
-
-export function CocktailDetails({ drink }: CocktailDetailsProps) {
-  const { t } = useTranslation();
-  const ingredients = Array.from({ length: MAX_INGREDIENTS }, (_, i) => {
-    const ingredient = drink[`strIngredient${i + 1}` as IngredientKey];
-    const measure = drink[`strMeasure${i + 1}` as MeasureKey];
-
-    return ingredient ? { ingredient, measure: measure?.trim() || "" } : null;
-  }).filter(isNotNill);
+export function CocktailDetails({ drink, translations }: CocktailDetailsProps) {
+  const drinkData = formatDrinkData(drink);
 
   return (
     <DrinkDetailsContainer>
       <TextContentWrapper>
         <Typography variant="h4" gutterBottom sx={drinkTitleStyles}>
-          {drink.strDrink}
+          {drinkData.name}
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">
-          {t("cocktails.category")}: {drink.strCategory}
+          {translations.category}: {drinkData.category}
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">
-          {t("cocktails.type")}: {drink.strAlcoholic}
+          {translations.type}: {drinkData.type}
         </Typography>
         <Typography variant="body2" color="text.secondary" gutterBottom>
-          {t("cocktails.glass")}: {drink.strGlass}
+          {translations.glass}: {drinkData.glass}
         </Typography>
 
         <Typography variant="h6" sx={sectionTitleStyles}>
-          {t("cocktails.instructions")}:
+          {translations.instructions}:
         </Typography>
-        <Typography variant="body1">{drink.strInstructions}</Typography>
+        <Typography variant="body1">{drinkData.instructions}</Typography>
 
         <Typography variant="h6" sx={sectionTitleStyles}>
-          {t("cocktails.ingredients")}:
+          {translations.ingredients}:
         </Typography>
         <List dense>
-          {ingredients.map((item, index) => (
+          {drinkData.ingredients.map((item, index) => (
             <ListItem key={index} disablePadding>
               <ListItemText primary={`${item.measure} ${item.ingredient}`} />
             </ListItem>
@@ -97,8 +87,8 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
       </TextContentWrapper>
       <ImageWrapper>
         <DrinkImage
-          src={drink.strDrinkThumb}
-          alt={drink.strDrink}
+          src={drinkData.image}
+          alt={drinkData.name}
           loading="lazy"
         />
       </ImageWrapper>

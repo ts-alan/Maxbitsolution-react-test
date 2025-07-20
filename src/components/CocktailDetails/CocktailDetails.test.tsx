@@ -17,9 +17,17 @@ const mockDrink = {
   strMeasure3: "1 oz ",
 };
 
+const mockTranslations = {
+  category: "Category",
+  type: "Type",
+  glass: "Glass",
+  instructions: "Instructions",
+  ingredients: "Ingredients",
+};
+
 describe("CocktailDetails component", () => {
   it("renders all cocktail details correctly", () => {
-    render(<CocktailDetails drink={mockDrink} />);
+    render(<CocktailDetails drink={mockDrink} translations={mockTranslations} />);
 
     // Check for the main information
     expect(

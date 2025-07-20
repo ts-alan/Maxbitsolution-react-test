@@ -3,7 +3,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 
 describe("LoadingSpinner", () => {
   it("renders loading spinner with text", () => {
-    render(<LoadingSpinner />);
+    render(<LoadingSpinner loadingText="Loading cocktail..." />);
 
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
     expect(screen.getByText("Loading cocktail...")).toBeInTheDocument();

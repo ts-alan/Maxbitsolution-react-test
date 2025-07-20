@@ -1,6 +1,5 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useTranslation } from "react-i18next";
 
 const LoadingContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -11,14 +10,16 @@ const LoadingContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export function LoadingSpinner() {
-  const { t } = useTranslation();
+interface LoadingSpinnerProps {
+  loadingText: string;
+}
 
+export function LoadingSpinner({ loadingText }: LoadingSpinnerProps) {
   return (
     <LoadingContainer>
       <CircularProgress size={60} />
       <Typography variant="h6" color="text.secondary">
-        {t("cocktails.loading")}
+        {loadingText}
       </Typography>
     </LoadingContainer>
   );

@@ -1,7 +1,6 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const StyledBox = styled(Box)({
   display: "flex",
@@ -26,21 +25,28 @@ const SubtitleTypography = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(4),
 }));
 
-export function NotFound() {
-  const { t } = useTranslation();
+interface NotFoundProps {
+  translations: {
+    title: string;
+    subtitle: string;
+    description: string;
+    goHome: string;
+  };
+}
 
+export function NotFound({ translations }: NotFoundProps) {
   return (
     <StyledBox>
       <StyledContainer maxWidth="md">
-        <TitleTypography variant="h1">{t("notFound.title")}</TitleTypography>
+        <TitleTypography variant="h1">{translations.title}</TitleTypography>
         <Typography variant="h4" component="h2" gutterBottom>
-          {t("notFound.subtitle")}
+          {translations.subtitle}
         </Typography>
         <SubtitleTypography variant="body1" color="text.secondary">
-          {t("notFound.description")}
+          {translations.description}
         </SubtitleTypography>
         <Button component={Link} to="/" variant="contained" size="large">
-          {t("notFound.goHome")}
+          {translations.goHome}
         </Button>
       </StyledContainer>
     </StyledBox>

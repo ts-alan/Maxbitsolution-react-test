@@ -8,9 +8,7 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import { type CSSObject, type Theme, styled } from "@mui/material/styles";
-import { Link, useLocation } from "react-router-dom";
-import { getMenuItemsData } from "./constants";
-import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -54,12 +52,16 @@ const Drawer = styled(MuiDrawer, {
 
 interface SideMenuProps {
   isOpen: boolean;
+  currentPath: string;
+  menuItemsData: Array<{
+    text: string;
+    Icon: React.ComponentType;
+    path: string;
+    code: string;
+  }>;
 }
 
-export function SideMenu({ isOpen }: SideMenuProps) {
-  const location = useLocation();
-  const { t } = useTranslation();
-  const menuItemsData = getMenuItemsData(t);
+export function SideMenu({ isOpen, currentPath, menuItemsData }: SideMenuProps) {
 
   const drawerContent = (
     <>
@@ -67,7 +69,7 @@ export function SideMenu({ isOpen }: SideMenuProps) {
       <List>
         {menuItemsData.map(({ text, Icon, path }) => (
           <ListItem component={Link} to={path} key={text} disablePadding>
-            <ListItemButton selected={location.pathname === path}>
+            <ListItemButton selected={currentPath === path}>
               <ListItemIcon>
                 <Icon />
               </ListItemIcon>

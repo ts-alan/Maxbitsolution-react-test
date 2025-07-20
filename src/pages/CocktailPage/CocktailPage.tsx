@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useGetCocktailByNameQuery } from '../../store/app/apiSlice';
-import { CocktailDetails } from '../../components/CocktailDetails';
-import { NotFound } from '../../components/NotFound';
-import { LoadingSpinner } from '../../components/LoadingSpinner';
-import { Layout } from '../../components/Layout';
+import { CocktailDetailsContainer } from '../../components/CocktailDetails';
+import { NotFoundContainer } from '../../components/NotFound';
+import { LoadingSpinnerContainer } from '../../components/LoadingSpinner';
+import { LayoutContainer } from '../../components/Layout';
 
 export function CocktailPage() {
   const { cocktailName } = useParams<{ cocktailName: string }>();
@@ -14,14 +14,14 @@ export function CocktailPage() {
   const drink = data?.drinks?.[0];
 
   return (
-    <Layout>
+    <LayoutContainer>
       {isFetching ? (
-        <LoadingSpinner />
+        <LoadingSpinnerContainer />
       ) : drink ? (
-        <CocktailDetails drink={drink} />
+        <CocktailDetailsContainer drink={drink} />
       ) : (
-        <NotFound />
+        <NotFoundContainer />
       )}
-    </Layout>
+    </LayoutContainer>
   );
 } 
