@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { SideMenu } from '../SideMenu';
-import { LanguageSwitcher } from '../LanguageSwitcher';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
@@ -96,8 +95,6 @@ export function Layout({ children }: LayoutProps) {
                 <Icon />
               </IconButton>
             ))}
-          <Box sx={{ flexGrow: 1 }} />
-          <LanguageSwitcher />
         </Toolbar>
       </AppBar>
       {!isMobile && <SideMenu isOpen={isSideMenuOpen} />}

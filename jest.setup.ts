@@ -23,15 +23,8 @@ jest.mock("react-i18next", () => ({
         "notFound.subtitle": "Page Not Found",
         "notFound.description": "Sorry, we couldn't find the page you're looking for.",
         "notFound.goHome": "Go back to Home",
-        "language.switch": "Switch Language",
-        "language.english": "English",
-        "language.russian": "Russian",
       };
       return translations[key] || key;
-    },
-    i18n: {
-      changeLanguage: jest.fn(),
-      language: "en",
     },
   }),
   initReactI18next: {

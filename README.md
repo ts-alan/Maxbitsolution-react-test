@@ -26,6 +26,7 @@ Implement an application that displays data retrieved via API with a responsive 
 - **Root Redirect**: Accessing "/" redirects to the first menu item's URL
 - **404 Error Handling**: Custom not found page for invalid routes
 - **Lazy Loading**: Images are loaded only when needed for better performance
+- **Internationalization**: English language support with react-i18next
 
 ### Technical Requirements
 
@@ -91,7 +92,6 @@ npm run preview
 src/
 ├── components/          # Reusable React components
 │   ├── CocktailDetails/ # Cocktail detail display component
-│   ├── LanguageSwitcher/# Language switching component  
 │   ├── Layout/          # Application layout wrapper
 │   ├── LoadingSpinner/  # Loading indicator
 │   ├── NotFound/        # 404 error component
@@ -100,7 +100,7 @@ src/
 │   ├── CocktailPage/    # Cocktail detail page
 │   └── NotFoundPage/    # 404 error page
 ├── i18n/               # Internationalization
-│   └── locales/         # Translation files (en, ru)
+│   └── locales/         # Translation files (en)
 ├── constants/           # Application constants
 ├── store/              # Redux store configuration
 │   └── app/            # API slice and types
@@ -120,6 +120,7 @@ src/
 - ✅ TypeScript implementation
 - ✅ Jest testing setup
 - ✅ ESLint configuration
+- ✅ Internationalization setup (English)
 
 ## 🌐 Browser Support
 

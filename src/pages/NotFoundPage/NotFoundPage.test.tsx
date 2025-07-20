@@ -35,6 +35,5 @@ describe('NotFoundPage', () => {
 
     // Should have the layout with navigation
     expect(screen.getByLabelText('open drawer')).toBeInTheDocument();
-    expect(screen.getByLabelText('Switch Language')).toBeInTheDocument();
   });
 }); 

@@ -28,7 +28,6 @@ describe('Layout component', () => {
     renderLayout();
 
     expect(screen.getByLabelText('open drawer')).toBeInTheDocument();
-    expect(screen.getByLabelText('Switch Language')).toBeInTheDocument();
   });
 
   it('renders side menu with cocktail items', () => {
