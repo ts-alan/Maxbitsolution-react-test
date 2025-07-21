@@ -20,7 +20,6 @@ const mockMenuItemsData = [
 const renderLayout = (children: React.ReactNode = <div>Test Content</div>) => {
   const mockProps = {
     isMobile: false,
-    isSideMenuOpen: true,
     menuItemsData: mockMenuItemsData,
     onDrawerToggle: jest.fn(),
   };
