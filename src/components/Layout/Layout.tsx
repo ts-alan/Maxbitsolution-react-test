@@ -16,6 +16,7 @@ const AppContainer = styled(Box)({
   display: 'flex',
   maxWidth: '1024px',
   minWidth: '360px',
+  width: '100%', 
   margin: '0 auto',
   position: 'relative',
 });
