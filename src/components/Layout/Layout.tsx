@@ -59,7 +59,6 @@ const MainContentContainer = styled(Box, {
 interface LayoutProps {
   children: ReactNode;
   isMobile: boolean;
-  isSideMenuOpen: boolean;
   menuItemsData: Array<{
     text: string;
     Icon: React.ComponentType;
@@ -71,14 +70,13 @@ interface LayoutProps {
 
 export function Layout({ 
   children, 
-  isMobile, 
-  isSideMenuOpen, 
+  isMobile,
   menuItemsData
 }: LayoutProps) {
 
   return (
     <AppContainer>
-      <AppBar position="absolute" open={!isMobile && isSideMenuOpen}>
+      <AppBar position="absolute" open={!isMobile}>
         <Toolbar>
           {isMobile &&
             menuItemsData.map(({ text, Icon, path }) => (
@@ -88,7 +86,7 @@ export function Layout({
             ))}
         </Toolbar>
       </AppBar>
-      {!isMobile && <SideMenuContainer isOpen={isSideMenuOpen} />}
+      {!isMobile && <SideMenuContainer isOpen={!isMobile} />}
       <MainContentContainer isMobile={isMobile}>
         {children}
       </MainContentContainer>

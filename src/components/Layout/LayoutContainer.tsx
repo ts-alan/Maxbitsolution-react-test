@@ -9,14 +9,12 @@ interface LayoutContainerProps {
 export function LayoutContainer({ children }: LayoutContainerProps) {
   const {
     isMobile,
-    isSideMenuOpen,
     menuItemsData
   } = useLayoutState();
 
   return (
     <Layout
       isMobile={isMobile}
-      isSideMenuOpen={isSideMenuOpen}
       menuItemsData={menuItemsData}
     >
       {children}
