@@ -7,7 +7,6 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { SideMenuContainer } from '../SideMenu';
-import MenuIcon from '@mui/icons-material/Menu';
 import { type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -67,33 +66,21 @@ interface LayoutProps {
     path: string;
     code: string;
   }>;
-  onDrawerToggle: () => void;
+  // удалил onDrawerToggle
 }
 
 export function Layout({ 
   children, 
   isMobile, 
   isSideMenuOpen, 
-  menuItemsData, 
-  onDrawerToggle 
+  menuItemsData
 }: LayoutProps) {
 
   return (
     <AppContainer>
       <AppBar position="absolute" open={!isMobile && isSideMenuOpen}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={onDrawerToggle}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(isSideMenuOpen && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
+          {/* Удалил IconButton с MenuIcon и onDrawerToggle */}
           {isMobile &&
             menuItemsData.map(({ text, Icon, path }) => (
               <IconButton component={Link} to={path} key={text} color="inherit">

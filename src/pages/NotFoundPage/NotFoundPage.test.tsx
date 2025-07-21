@@ -30,10 +30,4 @@ describe('NotFoundPage', () => {
     expect(screen.getByText('Go back to Home')).toBeInTheDocument();
   });
 
-  it('renders navigation elements', () => {
-    renderNotFoundPage();
-
-    // Should have the layout with navigation
-    expect(screen.getByLabelText('open drawer')).toBeInTheDocument();
-  });
 }); 

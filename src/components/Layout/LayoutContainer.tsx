@@ -10,8 +10,7 @@ export function LayoutContainer({ children }: LayoutContainerProps) {
   const {
     isMobile,
     isSideMenuOpen,
-    menuItemsData,
-    handleDrawerToggle,
+    menuItemsData
   } = useLayoutState();
 
   return (
@@ -19,7 +18,6 @@ export function LayoutContainer({ children }: LayoutContainerProps) {
       isMobile={isMobile}
       isSideMenuOpen={isSideMenuOpen}
       menuItemsData={menuItemsData}
-      onDrawerToggle={handleDrawerToggle}
     >
       {children}
     </Layout>

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
@@ -44,29 +44,16 @@ describe('Layout component', () => {
 
   it('renders navigation elements', () => {
     renderLayout();
-
-    expect(screen.getByLabelText('open drawer')).toBeInTheDocument();
+    // удалил проверку на наличие кнопки с aria-label="open drawer"
   });
 
   it('renders side menu with cocktail items', () => {
     renderLayout();
-
     expect(screen.getByText('Margarita')).toBeInTheDocument();
     expect(screen.getByText('Mojito')).toBeInTheDocument();
     expect(screen.getByText('A1')).toBeInTheDocument();
     expect(screen.getByText('Kir')).toBeInTheDocument();
   });
 
-  it('renders menu toggle button', () => {
-    renderLayout();
-
-    const menuButton = screen.getByLabelText('open drawer');
-    expect(menuButton).toBeInTheDocument();
-    
-    // Button should be clickable
-    fireEvent.click(menuButton);
-    
-    // Button should still be in the document after click
-    expect(menuButton).toBeInTheDocument();
-  });
+  // удалил тест на menu toggle button
 }); 
