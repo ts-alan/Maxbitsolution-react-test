@@ -80,7 +80,6 @@ export function Layout({
     <AppContainer>
       <AppBar position="absolute" open={!isMobile && isSideMenuOpen}>
         <Toolbar>
-          {/* Удалил IconButton с MenuIcon и onDrawerToggle */}
           {isMobile &&
             menuItemsData.map(({ text, Icon, path }) => (
               <IconButton component={Link} to={path} key={text} color="inherit">
