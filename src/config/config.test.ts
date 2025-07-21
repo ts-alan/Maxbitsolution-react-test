@@ -8,7 +8,7 @@ describe('Config', () => {
   });
 
   it('should use mocked config in tests', () => {
-    // В тестах используется мок из jest.setup.ts для избежания проблем с import.meta
+    // In tests, a mock from jest.setup.ts is used to avoid issues with import.meta
     expect(config.api.baseUrl).toContain('thecocktaildb.com');
   });
 }); 
