@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import "./SideMenu.scss";
 
 const cocktailCodes = ["margarita", "mojito", "a1", "kir"];
 

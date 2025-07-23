@@ -30,5 +30,5 @@
     "noImplicitThis": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"]
+  "include": ["src", "src/types/scss.d.ts"]
 }

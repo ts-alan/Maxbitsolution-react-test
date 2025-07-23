@@ -1,5 +1,6 @@
 import type { Drink } from "../../store/app/types";
 import { formatDrinkData } from "../../utils/drinkTransformers";
+import "./CocktailDetails.scss";
 
 interface CocktailDetailsProps {
   drink: Drink;
@@ -28,13 +29,13 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
 
         <div className="cocktail-meta">
           <div>
-            <strong>Category:</strong> {drinkData.category || NotAvailable}
+            {drinkData.category || NotAvailable}
           </div>
           <div>
-            <strong>Type:</strong> {drinkData.type || NotAvailable}
+            {drinkData.type || NotAvailable}
           </div>
           <div>
-            <strong>Glass:</strong> {drinkData.glass || NotAvailable}
+            {drinkData.glass || NotAvailable}
           </div>
         </div>
 

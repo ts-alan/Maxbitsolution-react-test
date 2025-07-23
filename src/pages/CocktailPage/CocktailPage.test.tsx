@@ -37,7 +37,7 @@ const renderCocktailPage = (initialRoute: string) => {
 describe("CocktailPage", () => {
   it("shows loading state initially", () => {
     renderCocktailPage("/margarita");
-    expect(screen.getByText("Loading cocktail...")).toBeInTheDocument();
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   it("fetches and displays cocktail details for margarita", async () => {
@@ -82,7 +82,7 @@ describe("CocktailPage", () => {
 
     expect(screen.getByText("Page Not Found")).toBeInTheDocument();
     expect(
-      screen.getByText("Sorry, we couldn't find the page you're looking for."),
+      screen.getByText("The page you are looking for does not exist."),
     ).toBeInTheDocument();
   });
 

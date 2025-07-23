@@ -1,9 +1,5 @@
-interface LoadingSpinnerProps {
-  loadingText?: string;
-}
+import "./LoadingSpinner.scss";
 
-export function LoadingSpinner({
-  loadingText = "Loading...",
-}: LoadingSpinnerProps) {
-  return <div className="loading-spinner">{loadingText}</div>;
+export function LoadingSpinner() {
+  return <div className="loading-spinner">Loading...</div>;
 }

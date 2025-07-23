@@ -16,7 +16,7 @@ export function CocktailPage() {
   return (
     <Layout>
       {isFetching ? (
-        <LoadingSpinner loadingText="Loading cocktail..." />
+        <LoadingSpinner />
       ) : drinks.length > 0 ? (
         <>
           {drinks.map((drink) => (

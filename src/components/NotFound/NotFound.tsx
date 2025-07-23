@@ -1,19 +1,11 @@
-interface NotFoundProps {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-}
+import "./NotFound.scss";
 
-export function NotFound({
-  title = "404",
-  subtitle = "Page Not Found",
-  description = "Sorry, we couldn't find the page you're looking for.",
-}: NotFoundProps) {
+export function NotFound() {
   return (
     <div className="not-found">
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
-      <p>{description}</p>
+      <h1>404</h1>
+      <h2>Page Not Found</h2>
+      <p>The page you are looking for does not exist.</p>
     </div>
   );
 }

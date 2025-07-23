@@ -1,0 +1,24 @@
+.app-container {
+  display: flex;
+  max-width: 1024px;
+  min-width: 360px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  border: 1px solid #000;
+}
+
+.main-content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* Responsive design for Layout */
+@media (max-width: 600px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+} 

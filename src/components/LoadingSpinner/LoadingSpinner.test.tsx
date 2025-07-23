@@ -2,27 +2,22 @@ import { render, screen } from "@testing-library/react";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 describe("LoadingSpinner component", () => {
-  it("renders with default loading text", () => {
+  it("renders loading spinner", () => {
     render(<LoadingSpinner />);
+    
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
-  it("renders with custom loading text", () => {
-    const customText = "Loading cocktails...";
-    render(<LoadingSpinner loadingText={customText} />);
-    expect(screen.getByText(customText)).toBeInTheDocument();
+  it("has correct CSS class", () => {
+    render(<LoadingSpinner />);
+    
+    const spinner = screen.getByText("Loading...");
+    expect(spinner).toHaveClass("loading-spinner");
   });
 
-  it("applies correct CSS class", () => {
-    render(<LoadingSpinner loadingText="Test loading" />);
-    const loadingDiv = screen.getByText("Test loading");
-    expect(loadingDiv).toHaveClass("loading-spinner");
-  });
-
-  it("renders empty string when provided", () => {
-    render(<LoadingSpinner loadingText="" />);
-    const loadingDiv = document.querySelector(".loading-spinner");
-    expect(loadingDiv).toBeInTheDocument();
-    expect(loadingDiv).toHaveTextContent("");
+  it("displays default loading text", () => {
+    render(<LoadingSpinner />);
+    
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 });

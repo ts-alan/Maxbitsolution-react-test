@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { SideMenu } from "../SideMenu/SideMenu";
+import "./Layout.scss";
 
 interface LayoutProps {
   children: ReactNode;
