@@ -3,7 +3,7 @@ import type { Drink } from "../store/app/types";
 export function formatDrinkData(drink: Drink) {
   const ingredients = [];
   
-  // Extract ingredients and measures
+  // Извлекаем ингредиенты и их количество
   for (let i = 1; i <= 15; i++) {
     const ingredient = drink[`strIngredient${i}` as keyof Drink];
     const measure = drink[`strMeasure${i}` as keyof Drink];

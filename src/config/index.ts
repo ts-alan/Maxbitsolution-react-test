@@ -4,8 +4,8 @@ interface Config {
   };
 }
 
-// In the browser, Vite replaces import.meta.env.* with actual values at build time
-// In tests, we use a mock from jest.setup.ts
+// В браузере Vite заменяет import.meta.env.* на реальные значения во время сборки.
+// В тестах мы используем мок из jest.setup.ts.
 const config: Config = {
   api: {
     baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://www.thecocktaildb.com/api/json/v1/1/',

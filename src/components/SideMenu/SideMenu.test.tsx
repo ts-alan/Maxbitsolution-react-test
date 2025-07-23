@@ -92,7 +92,7 @@ describe("SideMenu component", () => {
     
     expect(screen.getByText("Margarita")).toBeInTheDocument();
     expect(screen.getByText("Mojito")).toBeInTheDocument();
-    expect(screen.getByText("A1")).toBeInTheDocument(); // a1 -> A1
+    expect(screen.getByText("A1")).toBeInTheDocument(); 
     expect(screen.getByText("Kir")).toBeInTheDocument();
   });
 }); 

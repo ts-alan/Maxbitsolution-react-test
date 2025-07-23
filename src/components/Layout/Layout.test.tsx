@@ -21,10 +21,10 @@ describe("Layout component", () => {
   it("renders SideMenu component", () => {
     renderLayout();
     
-    // Check if sidebar navigation is present
+    
     expect(screen.getByRole("navigation")).toBeInTheDocument();
     
-    // Check if all menu items are present
+    
     expect(screen.getByText("Margarita")).toBeInTheDocument();
     expect(screen.getByText("Mojito")).toBeInTheDocument();
     expect(screen.getByText("A1")).toBeInTheDocument();

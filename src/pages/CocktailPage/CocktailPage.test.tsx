@@ -6,7 +6,7 @@ import { CocktailPage } from "./CocktailPage";
 import { cocktailsApi } from "../../store/app/apiSlice";
 import { server } from "../../__mocks__/server";
 
-// Create a store for testing
+
 const createTestStore = () =>
   configureStore({
     reducer: {
@@ -16,7 +16,7 @@ const createTestStore = () =>
       getDefaultMiddleware().concat(cocktailsApi.middleware),
   });
 
-// Establish API mocking before all tests
+
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
@@ -60,14 +60,14 @@ describe("CocktailPage", () => {
     renderCocktailPage("/mojito");
 
     await waitFor(() => {
-      // Check for both cocktail names in the content area (not sidebar)
+      
       const mojitoElements = screen.getAllByText("Mojito");
       expect(mojitoElements.length).toBeGreaterThan(0);
       
       expect(screen.getByText("Virgin Mojito")).toBeInTheDocument();
     });
 
-    // Check that both cocktails are displayed
+    
     expect(screen.getByText(/strCategory:.*Cocktail/)).toBeInTheDocument();
     expect(screen.getByText(/strCategory:.*Non-Alcoholic/)).toBeInTheDocument();
   });
@@ -84,7 +84,7 @@ describe("CocktailPage", () => {
   });
 
   it("uses default cocktail name when no param is provided", async () => {
-    // Test the fallback to 'margarita' when cocktailName is undefined
+    
     const store = createTestStore();
     
     render(
@@ -105,16 +105,16 @@ describe("CocktailPage", () => {
   it("renders layout container with sidebar navigation", async () => {
     renderCocktailPage("/margarita");
 
-    // Check that the layout includes the sidebar navigation
+    
     expect(screen.getByRole("navigation")).toBeInTheDocument();
-    expect(screen.getByText("Margarita")).toBeInTheDocument(); // in sidebar
-    expect(screen.getByText("Mojito")).toBeInTheDocument(); // in sidebar
-    expect(screen.getByText("A1")).toBeInTheDocument(); // in sidebar
-    expect(screen.getByText("Kir")).toBeInTheDocument(); // in sidebar
+    expect(screen.getByText("Margarita")).toBeInTheDocument(); 
+    expect(screen.getByText("Mojito")).toBeInTheDocument(); 
+    expect(screen.getByText("A1")).toBeInTheDocument(); 
+    expect(screen.getByText("Kir")).toBeInTheDocument(); 
 
-    // Wait for the cocktail content to load
+    
     await waitFor(() => {
-      expect(screen.getAllByText("Margarita")).toHaveLength(2); // one in sidebar, one in content
+      expect(screen.getAllByText("Margarita")).toHaveLength(2); 
     });
   });
 
@@ -140,11 +140,11 @@ describe("CocktailPage", () => {
 
     const image = screen.getByRole("img", { name: "Margarita" });
     expect(image).toHaveAttribute("loading", "lazy");
-    expect(image).toHaveAttribute("src", "https://www.thecocktaildb.com/images/media/drink/margarita.jpg");
+    expect(image).toHaveAttribute("src", "https:
   });
 
   it("handles different cocktail names correctly", async () => {
-    // Test with different route parameters
+    
     const testCases = [
       { route: "/margarita", expectedName: "Margarita" },
       { route: "/mojito", expectedName: "Mojito" },

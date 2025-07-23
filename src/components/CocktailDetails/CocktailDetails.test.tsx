@@ -89,9 +89,7 @@ describe("CocktailDetails component", () => {
     render(<CocktailDetails drink={drinkWithEmptyIngredients} />);
     
     expect(screen.getByText("List of ingredients:")).toBeInTheDocument();
-    // Should only render the lime juice ingredient (strIngredient3)
     expect(screen.getByText(/1 oz.*Lime juice/)).toBeInTheDocument();
-    // Should not render empty ingredients - check there's only one ingredient listed
     const ingredientItems = screen.getAllByRole('listitem');
     expect(ingredientItems).toHaveLength(1);
   });

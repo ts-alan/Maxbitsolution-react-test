@@ -72,7 +72,7 @@ const handlers = [
       return HttpResponse.json({ drinks: null });
     }
 
-    // Default response for unknown cocktails
+    // Ответ по умолчанию для неизвестных коктейлей
     return HttpResponse.json({ drinks: null });
   }),
 ];

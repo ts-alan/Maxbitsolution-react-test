@@ -3,17 +3,17 @@ import "whatwg-fetch";
 import { TextEncoder, TextDecoder } from "util";
 import { TransformStream } from "stream/web";
 
-// Set up environment variables for tests
+// Устанавливаем переменные окружения для тестов
 process.env['VITE_API_BASE_URL'] = "https://www.thecocktaildb.com/api/json/v1/1/";
 
-// Polyfill for TextEncoder/TextDecoder
+// Полифил для TextEncoder/TextDecoder
 (global as any).TextEncoder = TextEncoder;
 (global as any).TextDecoder = TextDecoder;
 
-// Polyfill for TransformStream (needed for MSW)
+// Полифил для TransformStream (необходим для MSW)
 (global as any).TransformStream = TransformStream;
 
-// Polyfill for BroadcastChannel (needed for MSW)
+// Полифил для BroadcastChannel (необходим для MSW)
 (global as any).BroadcastChannel = class BroadcastChannel {
   constructor(public name: string) {}
   addEventListener() {}
@@ -22,7 +22,7 @@ process.env['VITE_API_BASE_URL'] = "https://www.thecocktaildb.com/api/json/v1/1/
   close() {}
 };
 
-// Mock config module to avoid import.meta issues in tests
+// Мокаем модуль конфигурации, чтобы избежать проблем с import.meta в тестах
 jest.mock('./src/config', () => ({
   __esModule: true,
   default: {
@@ -32,15 +32,15 @@ jest.mock('./src/config', () => ({
   },
 }));
 
-// Mock window.matchMedia for responsive tests
+// Мокаем window.matchMedia для тестов адаптивности
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
+    addListener: jest.fn(), // устарело
+    removeListener: jest.fn(), // устарело
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
