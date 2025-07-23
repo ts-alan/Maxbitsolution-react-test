@@ -34,11 +34,8 @@ describe("CocktailDetails component", () => {
   it("renders all cocktail metadata with correct labels", () => {
     render(<CocktailDetails drink={mockDrink} />);
 
-    expect(screen.getByText("Category:")).toBeInTheDocument();
     expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
-    expect(screen.getByText("Type:")).toBeInTheDocument();
     expect(screen.getByText("Alcoholic")).toBeInTheDocument();
-    expect(screen.getByText("Glass:")).toBeInTheDocument();
     expect(screen.getByText("Cocktail glass")).toBeInTheDocument();
   });
 

@@ -43,7 +43,7 @@ describe("Router Configuration", () => {
 
   it("should render Layout component for all routes", () => {
     renderWithRouter(["/margarita"]);
-    
+
     expect(document.querySelector(".app-container")).toBeInTheDocument();
     expect(document.querySelector(".main-content")).toBeInTheDocument();
     expect(document.querySelector(".sidebar")).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe("Router Configuration", () => {
     });
   });
 
-  it("should handle different cocktail routes", () => {
+  it("should handle different cocktail routes", async () => {
     const routes = ["/margarita", "/mojito", "/a1", "/kir"];
 
     for (const route of routes) {
@@ -93,7 +93,9 @@ describe("Router Configuration", () => {
     renderWithRouter([""]);
 
     await waitFor(() => {
-      expect(screen.getByText("Margarita")).toBeInTheDocument();
+      expect(screen.getByRole("navigation")).toBeInTheDocument();
+      expect(screen.getAllByText("Margarita")).toHaveLength(2);
+      expect(document.querySelectorAll(".cocktail-details")).toHaveLength(6);
     });
   });
 
@@ -102,7 +104,7 @@ describe("Router Configuration", () => {
 
     const sidebar = document.querySelector(".sidebar");
     expect(sidebar).toBeInTheDocument();
-    
+
     const sidebarItems = document.querySelectorAll(".sidebar-item");
     expect(sidebarItems).toHaveLength(4);
   });
@@ -121,13 +123,15 @@ describe("Router Configuration", () => {
     renderWithRouter(["/margarita"]);
 
     await waitFor(() => {
-      expect(screen.getByText("Margarita")).toBeInTheDocument();
+      expect(screen.getByRole("navigation")).toBeInTheDocument();
+      expect(screen.getAllByText("Margarita")).toHaveLength(2);
+      expect(document.querySelectorAll(".cocktail-details")).toHaveLength(6);
     });
   });
 
   it("should handle route navigation state", () => {
     renderWithRouter(["/margarita"]);
-    
+
     const activeLink = document.querySelector(".sidebar-item.active");
     expect(activeLink).toBeInTheDocument();
     expect(activeLink).toHaveTextContent("Margarita");
@@ -147,14 +151,14 @@ describe("Router Configuration", () => {
 
   it("should properly render main content area", () => {
     renderWithRouter(["/margarita"]);
-    
+
     const mainContent = document.querySelector(".main-content");
     expect(mainContent).toBeInTheDocument();
   });
 
   it("should handle multiple route parameters", () => {
     renderWithRouter(["/margarita"]);
-    
+
     expect(document.querySelector(".app-container")).toBeInTheDocument();
   });
 
@@ -170,8 +174,12 @@ describe("Router Configuration", () => {
 
   it("should render proper component hierarchy", () => {
     renderWithRouter(["/margarita"]);
-    
-    expect(document.querySelector(".app-container .sidebar")).toBeInTheDocument();
-    expect(document.querySelector(".app-container .main-content")).toBeInTheDocument();
+
+    expect(
+      document.querySelector(".app-container .sidebar"),
+    ).toBeInTheDocument();
+    expect(
+      document.querySelector(".app-container .main-content"),
+    ).toBeInTheDocument();
   });
 });

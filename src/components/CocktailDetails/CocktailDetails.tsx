@@ -28,15 +28,9 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
         <div className="cocktail-name">{drinkData.name || NotAvailable}</div>
 
         <div className="cocktail-meta">
-          <div>
-            {drinkData.category || NotAvailable}
-          </div>
-          <div>
-            {drinkData.type || NotAvailable}
-          </div>
-          <div>
-            {drinkData.glass || NotAvailable}
-          </div>
+          <div>{drinkData.category || NotAvailable}</div>
+          <div>{drinkData.type || NotAvailable}</div>
+          <div>{drinkData.glass || NotAvailable}</div>
         </div>
 
         <div className="section-title">Instructions:</div>

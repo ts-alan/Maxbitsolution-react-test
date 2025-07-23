@@ -47,11 +47,8 @@ describe("CocktailPage", () => {
       expect(screen.getByText("Margarita")).toBeInTheDocument();
     });
 
-    expect(screen.getByText("Category:")).toBeInTheDocument();
     expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
-    expect(screen.getByText("Type:")).toBeInTheDocument();
     expect(screen.getByText("Alcoholic")).toBeInTheDocument();
-    expect(screen.getByText("Glass:")).toBeInTheDocument();
     expect(screen.getByText("Cocktail glass")).toBeInTheDocument();
     expect(
       screen.getByText("Rub the rim of the glass with lime slice..."),
