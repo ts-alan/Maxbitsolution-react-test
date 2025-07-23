@@ -1,1 +1,0 @@
-export { SideMenu as SideMenuContainer } from './SideMenu'; 

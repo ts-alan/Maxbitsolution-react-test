@@ -15,27 +15,27 @@ npm run dev
 - `npm run build` - Build for production
 - `npm run lint` - Check code style
 - `npm run format` - Format code with Prettier
-
-## Configuration
-
-Create `.env` file (optional):
-```
-VITE_API_BASE_URL=https://www.thecocktaildb.com/api/json/v1/1/
-```
+- `npm test` - Run tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage
 
 ## Tech Stack
 
-- React 18 + TypeScript
+- React 19 + TypeScript
 - Redux Toolkit + RTK Query
+- React Router
 - Vite
-- Simple CSS
+- Jest + React Testing Library
+- ESLint + Prettier
+- Simple CSS/SCSS
 
 ## Quality Gates
 
 1. TypeScript (type checking)
-2. ESLint (code linting)
+2. ESLint (code linting) 
 3. Prettier (code formatting)
-4. Vite (build tool)
+4. Jest (unit testing)
+5. Vite (build tool)
 
 ## Features
 
@@ -43,4 +43,6 @@ VITE_API_BASE_URL=https://www.thecocktaildb.com/api/json/v1/1/
 - Responsive design (360px - 1024px)
 - Lazy loading images
 - Multiple cocktail variants per type
-- Simple, clean interface matching wireframe design
+- Simple, clean interface
+- Error handling and loading states
+- Comprehensive test coverage
