@@ -55,6 +55,17 @@ body {
 
 .cocktail-details {
   position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.cocktail-details:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cocktail-details:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .cocktail-image {
