@@ -28,13 +28,13 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
 
         <div className="cocktail-meta">
           <div>
-           {drinkData.category || NotAvailable}
+            <strong>Category:</strong> {drinkData.category || NotAvailable}
           </div>
           <div>
-           {drinkData.type || NotAvailable}
+            <strong>Type:</strong> {drinkData.type || NotAvailable}
           </div>
           <div>
-           {drinkData.glass || NotAvailable}
+            <strong>Glass:</strong> {drinkData.glass || NotAvailable}
           </div>
         </div>
 

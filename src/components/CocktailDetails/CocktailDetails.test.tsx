@@ -5,39 +5,43 @@ import type { Drink } from "../../store/app/types";
 const mockDrink: Drink = {
   idDrink: "11007",
   strDrink: "Margarita",
+  strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
   strCategory: "Ordinary Drink",
   strAlcoholic: "Alcoholic",
   strGlass: "Cocktail glass",
   strInstructions: "Rub the rim of the glass with lime slice...",
-  strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
   strIngredient1: "Tequila",
-  strMeasure1: "1 1/2 oz",
   strIngredient2: "Triple sec",
-  strMeasure2: "1/2 oz",
   strIngredient3: "Lime juice",
-  strMeasure3: "1 oz",
+  strMeasure1: "1 1/2 oz ",
+  strMeasure2: "1/2 oz ",
+  strMeasure3: "1 oz ",
 };
 
 const mockDrinkWithoutImage: Drink = {
   ...mockDrink,
-  strDrinkThumb: "",
+  strDrinkThumb: null,
 };
 
 describe("CocktailDetails component", () => {
-  it("renders cocktail name correctly", () => {
+  it("renders cocktail name", () => {
     render(<CocktailDetails drink={mockDrink} />);
+    
     expect(screen.getByText("Margarita")).toBeInTheDocument();
   });
 
-  it("renders all cocktail metadata", () => {
+  it("renders all cocktail metadata with correct labels", () => {
     render(<CocktailDetails drink={mockDrink} />);
     
-    expect(screen.getByText("strCategory: Ordinary Drink")).toBeInTheDocument();
-    expect(screen.getByText("strAlcoholic: Alcoholic")).toBeInTheDocument();
-    expect(screen.getByText("strGlass: Cocktail glass")).toBeInTheDocument();
+    expect(screen.getByText("Category:")).toBeInTheDocument();
+    expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
+    expect(screen.getByText("Type:")).toBeInTheDocument();
+    expect(screen.getByText("Alcoholic")).toBeInTheDocument();
+    expect(screen.getByText("Glass:")).toBeInTheDocument();
+    expect(screen.getByText("Cocktail glass")).toBeInTheDocument();
   });
 
-  it("renders instructions section", () => {
+  it("renders instructions", () => {
     render(<CocktailDetails drink={mockDrink} />);
     
     expect(screen.getByText("Instructions:")).toBeInTheDocument();
@@ -46,75 +50,65 @@ describe("CocktailDetails component", () => {
 
   it("renders ingredients list", () => {
     render(<CocktailDetails drink={mockDrink} />);
-    
+
     expect(screen.getByText("List of ingredients:")).toBeInTheDocument();
-    expect(screen.getByText("strMeasure1 strIngredient1: 1 1/2 oz Tequila")).toBeInTheDocument();
-    expect(screen.getByText("strMeasure2 strIngredient2: 1/2 oz Triple sec")).toBeInTheDocument();
-    expect(screen.getByText("strMeasure3 strIngredient3: 1 oz Lime juice")).toBeInTheDocument();
+    expect(screen.getByText("1 1/2 oz Tequila")).toBeInTheDocument();
+    expect(screen.getByText("1/2 oz Triple sec")).toBeInTheDocument();
+    expect(screen.getByText("1 oz Lime juice")).toBeInTheDocument();
   });
 
-  it("renders image when strDrinkThumb is provided", () => {
+  it("renders image with correct attributes", () => {
     render(<CocktailDetails drink={mockDrink} />);
     
-    const image = screen.getByRole("img", { name: "Margarita" });
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute("src", mockDrink.strDrinkThumb);
+    const image = screen.getByRole("img");
+    expect(image).toHaveAttribute("src", "https://www.thecocktaildb.com/images/media/drink/margarita.jpg");
+    expect(image).toHaveAttribute("alt", "Margarita");
     expect(image).toHaveAttribute("loading", "lazy");
   });
 
   it("renders placeholder when no image is provided", () => {
     render(<CocktailDetails drink={mockDrinkWithoutImage} />);
     
-    expect(screen.getByText("strDrinkThumb")).toBeInTheDocument();
+    expect(screen.getByText("Image not available")).toBeInTheDocument();
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
 
-  it("handles empty ingredients gracefully", () => {
-    const drinkWithEmptyIngredients: Drink = {
+  it("renders 'Not available' for missing data", () => {
+    const incompleteData: Drink = {
       idDrink: "1",
-      strDrink: "Margarita",
-      strCategory: "Ordinary Drink",
-      strAlcoholic: "Alcoholic",
-      strGlass: "Cocktail glass",
-      strInstructions: "Rub the rim of the glass with lime slice...",
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
-      strIngredient1: "",
-      strIngredient2: "",
-      strIngredient3: "Lime juice",
-      strMeasure1: "",
-      strMeasure2: "",
-      strMeasure3: "1 oz",
+      strDrink: null,
+      strCategory: null,
+      strAlcoholic: null,
+      strGlass: null,
+      strInstructions: null,
+      strDrinkThumb: null,
     };
 
-    render(<CocktailDetails drink={drinkWithEmptyIngredients} />);
+    render(<CocktailDetails drink={incompleteData} />);
     
-    expect(screen.getByText("List of ingredients:")).toBeInTheDocument();
-    expect(screen.getByText(/1 oz.*Lime juice/)).toBeInTheDocument();
-    const ingredientItems = screen.getAllByRole('listitem');
-    expect(ingredientItems).toHaveLength(1);
+    expect(screen.getAllByText("Not available")).toHaveLength(6); // name, category, type, glass, instructions, ingredients
   });
 
-  it("handles ingredients without measures", () => {
+  it("renders ingredients without measure when measure is missing", () => {
     const drinkWithoutMeasures: Drink = {
-      idDrink: "1",
-      strDrink: "Margarita",
-      strCategory: "Ordinary Drink", 
-      strAlcoholic: "Alcoholic",
-      strGlass: "Cocktail glass",
-      strInstructions: "Rub the rim of the glass with lime slice...",
-      strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
-      strIngredient1: "Tequila",
-      strIngredient2: "Triple sec", 
-      strIngredient3: "Lime juice",
-      strMeasure1: "",
-      strMeasure2: "",
-      strMeasure3: "1 oz",
+      ...mockDrink,
+      strIngredient1: "Salt",
+      strMeasure1: undefined,
     };
 
     render(<CocktailDetails drink={drinkWithoutMeasures} />);
     
-    expect(screen.getByText(/.*Tequila/)).toBeInTheDocument();
-    expect(screen.getByText(/.*Triple sec/)).toBeInTheDocument();
-    expect(screen.getByText(/1 oz.*Lime juice/)).toBeInTheDocument();
+    expect(screen.getByText("Salt")).toBeInTheDocument();
+  });
+
+  it("applies correct CSS classes", () => {
+    render(<CocktailDetails drink={mockDrink} />);
+    
+    expect(document.querySelector(".cocktail-details")).toBeInTheDocument();
+    expect(document.querySelector(".cocktail-image")).toBeInTheDocument();
+    expect(document.querySelector(".cocktail-info")).toBeInTheDocument();
+    expect(document.querySelector(".cocktail-name")).toBeInTheDocument();
+    expect(document.querySelector(".cocktail-meta")).toBeInTheDocument();
+    expect(document.querySelector(".ingredients-list")).toBeInTheDocument();
   });
 }); 

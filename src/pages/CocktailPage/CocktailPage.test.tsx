@@ -49,9 +49,12 @@ describe("CocktailPage", () => {
       expect(screen.getByText("Margarita")).toBeInTheDocument();
     });
 
-    expect(screen.getByText("strCategory: Ordinary Drink")).toBeInTheDocument();
-    expect(screen.getByText("strAlcoholic: Alcoholic")).toBeInTheDocument();
-    expect(screen.getByText("strGlass: Cocktail glass")).toBeInTheDocument();
+    expect(screen.getByText("Category:")).toBeInTheDocument();
+    expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
+    expect(screen.getByText("Type:")).toBeInTheDocument();
+    expect(screen.getByText("Alcoholic")).toBeInTheDocument();
+    expect(screen.getByText("Glass:")).toBeInTheDocument();
+    expect(screen.getByText("Cocktail glass")).toBeInTheDocument();
     expect(screen.getByText("Rub the rim of the glass with lime slice...")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Margarita" })).toBeInTheDocument();
   });
@@ -68,8 +71,8 @@ describe("CocktailPage", () => {
     });
 
     
-    expect(screen.getByText(/strCategory:.*Cocktail/)).toBeInTheDocument();
-    expect(screen.getByText(/strCategory:.*Non-Alcoholic/)).toBeInTheDocument();
+    expect(screen.getByText("Cocktail")).toBeInTheDocument();
+    expect(screen.getByText("Non-Alcoholic")).toBeInTheDocument();
   });
 
   it("shows NotFound component when cocktail is not found", async () => {
@@ -125,9 +128,9 @@ describe("CocktailPage", () => {
       expect(screen.getByText("List of ingredients:")).toBeInTheDocument();
     });
 
-    expect(screen.getByText("strMeasure1 strIngredient1: 1 1/2 oz Tequila")).toBeInTheDocument();
-    expect(screen.getByText("strMeasure2 strIngredient2: 1/2 oz Triple sec")).toBeInTheDocument();
-    expect(screen.getByText("strMeasure3 strIngredient3: 1 oz Lime juice")).toBeInTheDocument();
+    expect(screen.getByText("1 1/2 oz Tequila")).toBeInTheDocument();
+    expect(screen.getByText("1/2 oz Triple sec")).toBeInTheDocument();
+    expect(screen.getByText("1 oz Lime juice")).toBeInTheDocument();
   });
 
   it("displays image with lazy loading", async () => {

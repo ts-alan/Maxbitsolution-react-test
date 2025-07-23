@@ -1,11 +1,11 @@
 export type Drink = {
   idDrink: string;
-  strDrink: string;
-  strCategory: string;
-  strAlcoholic: string;
-  strGlass: string;
-  strInstructions: string;
-  strDrinkThumb: string;
+  strDrink: string | null | undefined;
+  strCategory: string | null | undefined;
+  strAlcoholic: string | null | undefined;
+  strGlass: string | null | undefined;
+  strInstructions: string | null | undefined;
+  strDrinkThumb: string | null | undefined;
   strIngredient1?: string | undefined;
   strIngredient2?: string | undefined;
   strIngredient3?: string | undefined;
@@ -36,7 +36,7 @@ export type Drink = {
   strMeasure13?: string | undefined;
   strMeasure14?: string | undefined;
   strMeasure15?: string | undefined;
-  [key: string]: string | undefined;
+  [key: string]: string | null | undefined;
 };
 
 export interface CocktailsResponse {
