@@ -7,6 +7,7 @@ interface CocktailDetailsProps {
 
 export function CocktailDetails({ drink }: CocktailDetailsProps) {
   const drinkData = formatDrinkData(drink);
+  const NotAvailable = "Not available";
 
   return (
     <div className="cocktail-details">
@@ -14,34 +15,44 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
         {drinkData.image ? (
           <img
             src={drinkData.image}
-            alt={drinkData.name}
+            alt={drinkData.name || "Cocktail"}
             loading="lazy"
           />
         ) : (
-          'strDrinkThumb'
+          <div className="no-image">Image not available</div>
         )}
       </div>
-      
+
       <div className="cocktail-info">
-        <div className="cocktail-name">{drinkData.name}</div>
-        
+        <div className="cocktail-name">{drinkData.name || NotAvailable}</div>
+
         <div className="cocktail-meta">
-          <div>strCategory: {drinkData.category}</div>
-          <div>strAlcoholic: {drinkData.type}</div>
-          <div>strGlass: {drinkData.glass}</div>
+          <div>
+           {drinkData.category || NotAvailable}
+          </div>
+          <div>
+           {drinkData.type || NotAvailable}
+          </div>
+          <div>
+           {drinkData.glass || NotAvailable}
+          </div>
         </div>
 
         <div className="section-title">Instructions:</div>
-        <div>{drinkData.instructions}</div>
+        <div>{drinkData.instructions || NotAvailable}</div>
 
         <div className="section-title">List of ingredients:</div>
-        <ul className="ingredients-list">
-          {drinkData.ingredients.map((item, index) => (
-            <li key={index}>
-              strMeasure{index + 1} strIngredient{index + 1}: {item.measure} {item.ingredient}
-            </li>
-          ))}
-        </ul>
+        {drinkData.ingredients.length > 0 ? (
+          <ul className="ingredients-list">
+            {drinkData.ingredients.map((item, index) => (
+              <li key={index}>
+                {[item.measure, item.ingredient].filter(Boolean).join(" ")}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>{NotAvailable}</div>
+        )}
       </div>
     </div>
   );
