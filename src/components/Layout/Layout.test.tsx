@@ -1,58 +1,67 @@
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
-import { store } from '../../store/store';
-import { Layout } from './Layout';
-import theme from '../../theme';
-import MargaritaIcon from "@mui/icons-material/LocalBar";
-import MojitoIcon from "@mui/icons-material/LocalDrink";
-import A1Icon from "@mui/icons-material/WineBar";
-import KirIcon from "@mui/icons-material/Liquor";
-
-const mockMenuItemsData = [
-  { text: "Margarita", Icon: MargaritaIcon, path: "/margarita", code: "margarita" },
-  { text: "Mojito", Icon: MojitoIcon, path: "/mojito", code: "mojito" },
-  { text: "A1", Icon: A1Icon, path: "/a1", code: "a1" },
-  { text: "Kir", Icon: KirIcon, path: "/kir", code: "kir" },
-];
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import { Layout } from "./Layout";
 
 const renderLayout = (children: React.ReactNode = <div>Test Content</div>) => {
-  const mockProps = {
-    isMobile: false,
-    menuItemsData: mockMenuItemsData,
-    onDrawerToggle: jest.fn(),
-  };
-  
   return render(
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <MemoryRouter>
-          <Layout {...mockProps}>{children}</Layout>
-        </MemoryRouter>
-      </ThemeProvider>
-    </Provider>,
+    <MemoryRouter>
+      <Layout>{children}</Layout>
+    </MemoryRouter>
   );
 };
 
-describe('Layout component', () => {
-  it('renders children content', () => {
-    renderLayout(<div>Custom Test Content</div>);
-    expect(screen.getByText('Custom Test Content')).toBeInTheDocument();
+describe("Layout component", () => {
+  it("renders children content", () => {
+    renderLayout(<div data-testid="test-content">Test Children</div>);
+    
+    expect(screen.getByTestId("test-content")).toBeInTheDocument();
+    expect(screen.getByText("Test Children")).toBeInTheDocument();
   });
 
-  it('renders navigation elements', () => {
+  it("renders SideMenu component", () => {
     renderLayout();
-    // удалил проверку на наличие кнопки с aria-label="open drawer"
+    
+    // Check if sidebar navigation is present
+    expect(screen.getByRole("navigation")).toBeInTheDocument();
+    
+    // Check if all menu items are present
+    expect(screen.getByText("Margarita")).toBeInTheDocument();
+    expect(screen.getByText("Mojito")).toBeInTheDocument();
+    expect(screen.getByText("A1")).toBeInTheDocument();
+    expect(screen.getByText("Kir")).toBeInTheDocument();
   });
 
-  it('renders side menu with cocktail items', () => {
-    renderLayout();
-    expect(screen.getByText('Margarita')).toBeInTheDocument();
-    expect(screen.getByText('Mojito')).toBeInTheDocument();
-    expect(screen.getByText('A1')).toBeInTheDocument();
-    expect(screen.getByText('Kir')).toBeInTheDocument();
+  it("applies correct CSS classes", () => {
+    renderLayout(<div data-testid="test-content">Content</div>);
+    
+    const appContainer = screen.getByText("Margarita").closest(".app-container");
+    const mainContent = screen.getByRole("main");
+    
+    expect(appContainer).toHaveClass("app-container");
+    expect(mainContent).toHaveClass("main-content");
   });
 
-  // удалил тест на menu toggle button
+  it("renders main element with correct semantic structure", () => {
+    renderLayout(<div data-testid="content">Main Content</div>);
+    
+    const main = screen.getByRole("main");
+    expect(main).toBeInTheDocument();
+    expect(main).toContainElement(screen.getByTestId("content"));
+  });
+
+  it("handles different types of children", () => {
+    const complexChildren = (
+      <div>
+        <h1>Title</h1>
+        <p>Paragraph</p>
+        <button>Button</button>
+      </div>
+    );
+    
+    renderLayout(complexChildren);
+    
+    expect(screen.getByText("Title")).toBeInTheDocument();
+    expect(screen.getByText("Paragraph")).toBeInTheDocument();
+    expect(screen.getByText("Button")).toBeInTheDocument();
+  });
 }); 

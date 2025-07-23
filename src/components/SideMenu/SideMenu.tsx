@@ -1,89 +1,22 @@
-import {
-  Drawer as MuiDrawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
-  ListItemIcon,
-} from "@mui/material";
-import { type CSSObject, type Theme, styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 
-const drawerWidth = 240;
+const cocktailCodes = ['margarita', 'mojito', 'a1', 'kir'];
 
-const openedMixin = (theme: Theme): CSSObject => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
-}));
-
-interface SideMenuProps {
-  isOpen: boolean;
-  currentPath: string;
-  menuItemsData: Array<{
-    text: string;
-    Icon: React.ComponentType;
-    path: string;
-    code: string;
-  }>;
-}
-
-export function SideMenu({ isOpen, currentPath, menuItemsData }: SideMenuProps) {
-
-  const drawerContent = (
-    <>
-      <Toolbar />
-      <List>
-        {menuItemsData.map(({ text, Icon, path }) => (
-          <ListItem component={Link} to={path} key={text} disablePadding>
-            <ListItemButton selected={currentPath === path}>
-              <ListItemIcon>
-                <Icon />
-              </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: isOpen ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </>
-  );
+export function SideMenu() {
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
-    <Drawer variant="permanent" open={isOpen}>
-      {drawerContent}
-    </Drawer>
+    <nav className="sidebar">
+      {cocktailCodes.map((code) => (
+        <Link
+          key={code}
+          to={`/${code}`}
+          className={`sidebar-item ${currentPath === `/${code}` ? 'active' : ''}`}
+        >
+          {code.charAt(0).toUpperCase() + code.slice(1)}
+        </Link>
+      ))}
+    </nav>
   );
 }
