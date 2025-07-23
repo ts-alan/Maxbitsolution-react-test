@@ -11,14 +11,18 @@ export function CocktailPage() {
     cocktailName || 'margarita',
   );
 
-  const drink = data?.drinks?.[0];
+  const drinks = data?.drinks ?? [];
 
   return (
     <LayoutContainer>
       {isFetching ? (
         <LoadingSpinnerContainer />
-      ) : drink ? (
-        <CocktailDetailsContainer drink={drink} />
+      ) : drinks.length > 0 ? (
+        <>
+          {drinks.map((drink) => (
+            <CocktailDetailsContainer key={drink.idDrink} drink={drink} />
+          ))}
+        </>
       ) : (
         <NotFoundContainer />
       )}

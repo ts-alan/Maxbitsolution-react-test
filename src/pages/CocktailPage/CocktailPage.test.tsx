@@ -42,9 +42,8 @@ describe('CocktailPage', () => {
     renderCocktailPage('/margarita');
 
     await waitFor(() => {
-      expect(
-        screen.getByRole('heading', { name: 'Margarita' }),
-      ).toBeInTheDocument();
+      const headings = screen.getAllByRole('heading', { name: 'Margarita' });
+      expect(headings.length).toBeGreaterThan(0);
     });
 
     expect(screen.getByText('Category: Ordinary Drink')).toBeInTheDocument();
