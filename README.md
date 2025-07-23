@@ -16,8 +16,7 @@ npm run dev
 - `npm run lint` - Check code style
 - `npm run format` - Format code with Prettier
 - `npm test` - Run tests
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:coverage` - Run tests with coverage
+
 
 ## Tech Stack
 
