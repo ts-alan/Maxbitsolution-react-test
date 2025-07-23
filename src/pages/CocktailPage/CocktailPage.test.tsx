@@ -140,7 +140,7 @@ describe("CocktailPage", () => {
 
     const image = screen.getByRole("img", { name: "Margarita" });
     expect(image).toHaveAttribute("loading", "lazy");
-    expect(image).toHaveAttribute("src", "https:
+    expect(image).toHaveAttribute("src", "https://www.thecocktaildb.com/images/media/drink/margarita.jpg");
   });
 
   it("handles different cocktail names correctly", async () => {

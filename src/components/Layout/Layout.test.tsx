@@ -21,9 +21,7 @@ describe("Layout component", () => {
   it("renders SideMenu component", () => {
     renderLayout();
     
-    
     expect(screen.getByRole("navigation")).toBeInTheDocument();
-    
     
     expect(screen.getByText("Margarita")).toBeInTheDocument();
     expect(screen.getByText("Mojito")).toBeInTheDocument();
