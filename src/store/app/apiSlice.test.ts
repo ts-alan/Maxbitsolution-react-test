@@ -27,7 +27,7 @@ describe("cocktailsApi", () => {
   describe("getCocktailByName endpoint", () => {
     it("should fetch cocktail data successfully for margarita", async () => {
       const result = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("margarita")
+        cocktailsApi.endpoints.getCocktailByName.initiate("margarita"),
       );
 
       expect(result.data).toEqual({
@@ -39,7 +39,8 @@ describe("cocktailsApi", () => {
             strAlcoholic: "Alcoholic",
             strGlass: "Cocktail glass",
             strInstructions: "Rub the rim of the glass with lime slice...",
-            strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+            strDrinkThumb:
+              "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
             strIngredient1: "Tequila",
             strMeasure1: "1 1/2 oz",
             strIngredient2: "Triple sec",
@@ -53,7 +54,7 @@ describe("cocktailsApi", () => {
 
     it("should fetch multiple cocktail variants for mojito", async () => {
       const result = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("mojito")
+        cocktailsApi.endpoints.getCocktailByName.initiate("mojito"),
       );
 
       expect(result.data?.drinks).toHaveLength(2);
@@ -65,7 +66,7 @@ describe("cocktailsApi", () => {
 
     it("should return null for non-existent cocktail", async () => {
       const result = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("nonexistent")
+        cocktailsApi.endpoints.getCocktailByName.initiate("nonexistent"),
       );
 
       expect(result.data).toEqual({ drinks: null });
@@ -73,12 +74,12 @@ describe("cocktailsApi", () => {
 
     it("should handle different cocktail names", async () => {
       const testCases = ["margarita", "mojito", "MARGARITA", "Mojito"];
-      
+
       for (const cocktailName of testCases) {
         const result = await store.dispatch(
-          cocktailsApi.endpoints.getCocktailByName.initiate(cocktailName)
+          cocktailsApi.endpoints.getCocktailByName.initiate(cocktailName),
         );
-        
+
         expect(result.data?.drinks).not.toBeNull();
       }
     });
@@ -86,20 +87,20 @@ describe("cocktailsApi", () => {
     it("should cache requests to prevent duplicate calls", async () => {
       // First call
       const result1 = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("margarita")
+        cocktailsApi.endpoints.getCocktailByName.initiate("margarita"),
       );
-      
+
       // Second call with same parameter should use cache
       const result2 = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("margarita")
+        cocktailsApi.endpoints.getCocktailByName.initiate("margarita"),
       );
-      
+
       expect(result1.data).toEqual(result2.data);
     });
 
     it("should handle empty string input", async () => {
       const result = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("")
+        cocktailsApi.endpoints.getCocktailByName.initiate(""),
       );
 
       expect(result.data).toEqual({ drinks: null });
@@ -108,7 +109,7 @@ describe("cocktailsApi", () => {
     it("should handle API errors gracefully", async () => {
       // Test with a cocktail name that might cause an error
       const result = await store.dispatch(
-        cocktailsApi.endpoints.getCocktailByName.initiate("unknown-cocktail")
+        cocktailsApi.endpoints.getCocktailByName.initiate("unknown-cocktail"),
       );
 
       // Should still return a valid response structure
@@ -126,4 +127,4 @@ describe("cocktailsApi", () => {
       expect(typeof cocktailsApi.useGetCocktailByNameQuery).toBe("function");
     });
   });
-}); 
+});

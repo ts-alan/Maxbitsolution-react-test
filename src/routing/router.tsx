@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { CocktailPage, NotFoundPage } from "../pages";
 
 export const router = createBrowserRouter([
@@ -17,4 +14,4 @@ export const router = createBrowserRouter([
     path: "*",
     element: <NotFoundPage />,
   },
-]); 
+]);

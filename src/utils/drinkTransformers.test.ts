@@ -8,7 +8,8 @@ const mockDrink: Drink = {
   strAlcoholic: "Alcoholic",
   strGlass: "Cocktail glass",
   strInstructions: "Rub the rim of the glass with lime slice...",
-  strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+  strDrinkThumb:
+    "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
   strIngredient1: "Tequila",
   strMeasure1: "1 1/2 oz",
   strIngredient2: "Triple sec",
@@ -24,18 +25,22 @@ const mockDrink: Drink = {
 describe("formatDrinkData", () => {
   it("should format basic drink data correctly", () => {
     const result = formatDrinkData(mockDrink);
-    
+
     expect(result.name).toBe("Margarita");
     expect(result.category).toBe("Ordinary Drink");
     expect(result.type).toBe("Alcoholic");
     expect(result.glass).toBe("Cocktail glass");
-    expect(result.instructions).toBe("Rub the rim of the glass with lime slice...");
-    expect(result.image).toBe("https://www.thecocktaildb.com/images/media/drink/margarita.jpg");
+    expect(result.instructions).toBe(
+      "Rub the rim of the glass with lime slice...",
+    );
+    expect(result.image).toBe(
+      "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+    );
   });
 
   it("should extract ingredients and measures correctly", () => {
     const result = formatDrinkData(mockDrink);
-    
+
     expect(result.ingredients).toHaveLength(3);
     expect(result.ingredients[0]).toEqual({
       ingredient: "Tequila",
@@ -58,9 +63,9 @@ describe("formatDrinkData", () => {
       strMeasure2: undefined,
       strMeasure3: "   ", // whitespace only
     };
-    
+
     const result = formatDrinkData(drinkWithoutMeasures);
-    
+
     expect(result.ingredients).toHaveLength(3);
     expect(result.ingredients[0]).toEqual({
       ingredient: "Tequila",
@@ -85,9 +90,9 @@ describe("formatDrinkData", () => {
       strIngredient4: undefined,
       strIngredient5: "Lime juice",
     };
-    
+
     const result = formatDrinkData(drinkWithEmptyIngredients);
-    
+
     expect(result.ingredients).toHaveLength(2);
     expect(result.ingredients[0]?.ingredient).toBe("Tequila");
     expect(result.ingredients[1]?.ingredient).toBe("Lime juice");
@@ -101,9 +106,9 @@ describe("formatDrinkData", () => {
       strIngredient2: " Triple sec ",
       strMeasure2: " 1/2 oz ",
     };
-    
+
     const result = formatDrinkData(drinkWithWhitespace);
-    
+
     expect(result.ingredients[0]).toEqual({
       ingredient: "Tequila",
       measure: "1 1/2 oz",
@@ -133,9 +138,9 @@ describe("formatDrinkData", () => {
       strIngredient14: "Ingredient 14",
       strIngredient15: "Ingredient 15",
     };
-    
+
     const result = formatDrinkData(drinkWithManyIngredients);
-    
+
     expect(result.ingredients).toHaveLength(15);
     expect(result.ingredients[0]?.ingredient).toBe("Ingredient 1");
     expect(result.ingredients[14]?.ingredient).toBe("Ingredient 15");
@@ -148,9 +153,9 @@ describe("formatDrinkData", () => {
       strIngredient2: undefined,
       strIngredient3: "   ",
     };
-    
+
     const result = formatDrinkData(drinkWithNoIngredients);
-    
+
     expect(result.ingredients).toHaveLength(0);
   });
 
@@ -164,9 +169,9 @@ describe("formatDrinkData", () => {
       strInstructions: "Test instructions",
       strDrinkThumb: "test.jpg",
     };
-    
+
     const result = formatDrinkData(minimalDrink);
-    
+
     expect(result.name).toBe("Test Drink");
     expect(result.category).toBe("Test Category");
     expect(result.type).toBe("Non alcoholic");
@@ -188,13 +193,13 @@ describe("formatDrinkData", () => {
       strIngredient1: "Salt",
       strMeasure1: "",
     };
-    
+
     const result = formatDrinkData(drinkWithEmptyMeasure);
-    
+
     expect(result.ingredients).toHaveLength(1);
     expect(result.ingredients[0]).toEqual({
       ingredient: "Salt",
       measure: "",
     });
   });
-}); 
+});

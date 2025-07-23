@@ -11,7 +11,8 @@ const mockDrinks = {
         strAlcoholic: "Alcoholic",
         strGlass: "Cocktail glass",
         strInstructions: "Rub the rim of the glass with lime slice...",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+        strDrinkThumb:
+          "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
         strIngredient1: "Tequila",
         strMeasure1: "1 1/2 oz",
         strIngredient2: "Triple sec",
@@ -30,7 +31,8 @@ const mockDrinks = {
         strAlcoholic: "Alcoholic",
         strGlass: "Highball glass",
         strInstructions: "Muddle mint leaves with sugar and lime juice...",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/mojito.jpg",
+        strDrinkThumb:
+          "https://www.thecocktaildb.com/images/media/drink/mojito.jpg",
         strIngredient1: "Light rum",
         strMeasure1: "2-3 oz",
         strIngredient2: "Lime",
@@ -47,7 +49,8 @@ const mockDrinks = {
         strAlcoholic: "Non alcoholic",
         strGlass: "Highball glass",
         strInstructions: "Muddle mint leaves with sugar and lime juice...",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/virgin-mojito.jpg",
+        strDrinkThumb:
+          "https://www.thecocktaildb.com/images/media/drink/virgin-mojito.jpg",
         strIngredient1: "Lime",
         strMeasure1: "Juice of 1",
         strIngredient2: "Sugar",
@@ -60,21 +63,26 @@ const mockDrinks = {
 };
 
 const handlers = [
-  http.get("https://www.thecocktaildb.com/api/json/v1/1/search.php", ({ request }) => {
-    const url = new URL(request.url);
-    const cocktailName = url.searchParams.get("s")?.toLowerCase();
+  http.get(
+    "https://www.thecocktaildb.com/api/json/v1/1/search.php",
+    ({ request }) => {
+      const url = new URL(request.url);
+      const cocktailName = url.searchParams.get("s")?.toLowerCase();
 
-    if (cocktailName && mockDrinks[cocktailName as keyof typeof mockDrinks]) {
-      return HttpResponse.json(mockDrinks[cocktailName as keyof typeof mockDrinks]);
-    }
-    
-    if (cocktailName === "nonexistent") {
+      if (cocktailName && mockDrinks[cocktailName as keyof typeof mockDrinks]) {
+        return HttpResponse.json(
+          mockDrinks[cocktailName as keyof typeof mockDrinks],
+        );
+      }
+
+      if (cocktailName === "nonexistent") {
+        return HttpResponse.json({ drinks: null });
+      }
+
+      // Ответ по умолчанию для неизвестных коктейлей
       return HttpResponse.json({ drinks: null });
-    }
-
-    // Ответ по умолчанию для неизвестных коктейлей
-    return HttpResponse.json({ drinks: null });
-  }),
+    },
+  ),
 ];
 
-export const server = setupServer(...handlers); 
+export const server = setupServer(...handlers);

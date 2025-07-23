@@ -5,7 +5,8 @@ import type { Drink } from "../../store/app/types";
 const mockDrink: Drink = {
   idDrink: "11007",
   strDrink: "Margarita",
-  strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+  strDrinkThumb:
+    "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
   strCategory: "Ordinary Drink",
   strAlcoholic: "Alcoholic",
   strGlass: "Cocktail glass",
@@ -26,13 +27,13 @@ const mockDrinkWithoutImage: Drink = {
 describe("CocktailDetails component", () => {
   it("renders cocktail name", () => {
     render(<CocktailDetails drink={mockDrink} />);
-    
+
     expect(screen.getByText("Margarita")).toBeInTheDocument();
   });
 
   it("renders all cocktail metadata with correct labels", () => {
     render(<CocktailDetails drink={mockDrink} />);
-    
+
     expect(screen.getByText("Category:")).toBeInTheDocument();
     expect(screen.getByText("Ordinary Drink")).toBeInTheDocument();
     expect(screen.getByText("Type:")).toBeInTheDocument();
@@ -43,9 +44,11 @@ describe("CocktailDetails component", () => {
 
   it("renders instructions", () => {
     render(<CocktailDetails drink={mockDrink} />);
-    
+
     expect(screen.getByText("Instructions:")).toBeInTheDocument();
-    expect(screen.getByText("Rub the rim of the glass with lime slice...")).toBeInTheDocument();
+    expect(
+      screen.getByText("Rub the rim of the glass with lime slice..."),
+    ).toBeInTheDocument();
   });
 
   it("renders ingredients list", () => {
@@ -59,16 +62,19 @@ describe("CocktailDetails component", () => {
 
   it("renders image with correct attributes", () => {
     render(<CocktailDetails drink={mockDrink} />);
-    
+
     const image = screen.getByRole("img");
-    expect(image).toHaveAttribute("src", "https://www.thecocktaildb.com/images/media/drink/margarita.jpg");
+    expect(image).toHaveAttribute(
+      "src",
+      "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+    );
     expect(image).toHaveAttribute("alt", "Margarita");
     expect(image).toHaveAttribute("loading", "lazy");
   });
 
   it("renders placeholder when no image is provided", () => {
     render(<CocktailDetails drink={mockDrinkWithoutImage} />);
-    
+
     expect(screen.getByText("Image not available")).toBeInTheDocument();
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
@@ -85,7 +91,7 @@ describe("CocktailDetails component", () => {
     };
 
     render(<CocktailDetails drink={incompleteData} />);
-    
+
     expect(screen.getAllByText("Not available")).toHaveLength(6); // name, category, type, glass, instructions, ingredients
   });
 
@@ -97,13 +103,13 @@ describe("CocktailDetails component", () => {
     };
 
     render(<CocktailDetails drink={drinkWithoutMeasures} />);
-    
+
     expect(screen.getByText("Salt")).toBeInTheDocument();
   });
 
   it("applies correct CSS classes", () => {
     render(<CocktailDetails drink={mockDrink} />);
-    
+
     expect(document.querySelector(".cocktail-details")).toBeInTheDocument();
     expect(document.querySelector(".cocktail-image")).toBeInTheDocument();
     expect(document.querySelector(".cocktail-info")).toBeInTheDocument();
@@ -111,4 +117,4 @@ describe("CocktailDetails component", () => {
     expect(document.querySelector(".cocktail-meta")).toBeInTheDocument();
     expect(document.querySelector(".ingredients-list")).toBeInTheDocument();
   });
-}); 
+});

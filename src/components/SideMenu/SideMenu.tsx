@@ -1,6 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 
-const cocktailCodes = ['margarita', 'mojito', 'a1', 'kir'];
+const cocktailCodes = ["margarita", "mojito", "a1", "kir"];
 
 export function SideMenu() {
   const location = useLocation();
@@ -12,7 +12,7 @@ export function SideMenu() {
         <Link
           key={code}
           to={`/${code}`}
-          className={`sidebar-item ${currentPath === `/${code}` ? 'active' : ''}`}
+          className={`sidebar-item ${currentPath === `/${code}` ? "active" : ""}`}
         >
           {code.charAt(0).toUpperCase() + code.slice(1)}
         </Link>

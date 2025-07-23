@@ -6,23 +6,23 @@ const renderLayout = (children: React.ReactNode = <div>Test Content</div>) => {
   return render(
     <MemoryRouter>
       <Layout>{children}</Layout>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
 describe("Layout component", () => {
   it("renders children content", () => {
     renderLayout(<div data-testid="test-content">Test Children</div>);
-    
+
     expect(screen.getByTestId("test-content")).toBeInTheDocument();
     expect(screen.getByText("Test Children")).toBeInTheDocument();
   });
 
   it("renders SideMenu component", () => {
     renderLayout();
-    
+
     expect(screen.getByRole("navigation")).toBeInTheDocument();
-    
+
     expect(screen.getByText("Margarita")).toBeInTheDocument();
     expect(screen.getByText("Mojito")).toBeInTheDocument();
     expect(screen.getByText("A1")).toBeInTheDocument();
@@ -31,17 +31,19 @@ describe("Layout component", () => {
 
   it("applies correct CSS classes", () => {
     renderLayout(<div data-testid="test-content">Content</div>);
-    
-    const appContainer = screen.getByText("Margarita").closest(".app-container");
+
+    const appContainer = screen
+      .getByText("Margarita")
+      .closest(".app-container");
     const mainContent = screen.getByRole("main");
-    
+
     expect(appContainer).toHaveClass("app-container");
     expect(mainContent).toHaveClass("main-content");
   });
 
   it("renders main element with correct semantic structure", () => {
     renderLayout(<div data-testid="content">Main Content</div>);
-    
+
     const main = screen.getByRole("main");
     expect(main).toBeInTheDocument();
     expect(main).toContainElement(screen.getByTestId("content"));
@@ -55,11 +57,11 @@ describe("Layout component", () => {
         <button>Button</button>
       </div>
     );
-    
+
     renderLayout(complexChildren);
-    
+
     expect(screen.getByText("Title")).toBeInTheDocument();
     expect(screen.getByText("Paragraph")).toBeInTheDocument();
     expect(screen.getByText("Button")).toBeInTheDocument();
   });
-}); 
+});

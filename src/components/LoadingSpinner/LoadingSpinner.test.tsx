@@ -25,4 +25,4 @@ describe("LoadingSpinner component", () => {
     expect(loadingDiv).toBeInTheDocument();
     expect(loadingDiv).toHaveTextContent("");
   });
-}); 
+});

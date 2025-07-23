@@ -6,7 +6,6 @@ import { CocktailPage } from "./CocktailPage";
 import { cocktailsApi } from "../../store/app/apiSlice";
 import { server } from "../../__mocks__/server";
 
-
 const createTestStore = () =>
   configureStore({
     reducer: {
@@ -16,14 +15,13 @@ const createTestStore = () =>
       getDefaultMiddleware().concat(cocktailsApi.middleware),
   });
 
-
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 const renderCocktailPage = (initialRoute: string) => {
   const store = createTestStore();
-  
+
   return render(
     <Provider store={store}>
       <MemoryRouter initialEntries={[initialRoute]}>
@@ -32,7 +30,7 @@ const renderCocktailPage = (initialRoute: string) => {
           <Route path="*" element={<div>Not Found Page</div>} />
         </Routes>
       </MemoryRouter>
-    </Provider>
+    </Provider>,
   );
 };
 
@@ -55,7 +53,9 @@ describe("CocktailPage", () => {
     expect(screen.getByText("Alcoholic")).toBeInTheDocument();
     expect(screen.getByText("Glass:")).toBeInTheDocument();
     expect(screen.getByText("Cocktail glass")).toBeInTheDocument();
-    expect(screen.getByText("Rub the rim of the glass with lime slice...")).toBeInTheDocument();
+    expect(
+      screen.getByText("Rub the rim of the glass with lime slice..."),
+    ).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Margarita" })).toBeInTheDocument();
   });
 
@@ -63,14 +63,12 @@ describe("CocktailPage", () => {
     renderCocktailPage("/mojito");
 
     await waitFor(() => {
-      
       const mojitoElements = screen.getAllByText("Mojito");
       expect(mojitoElements.length).toBeGreaterThan(0);
-      
+
       expect(screen.getByText("Virgin Mojito")).toBeInTheDocument();
     });
 
-    
     expect(screen.getByText("Cocktail")).toBeInTheDocument();
     expect(screen.getByText("Non-Alcoholic")).toBeInTheDocument();
   });
@@ -81,15 +79,16 @@ describe("CocktailPage", () => {
     await waitFor(() => {
       expect(screen.getByText("404")).toBeInTheDocument();
     });
-    
+
     expect(screen.getByText("Page Not Found")).toBeInTheDocument();
-    expect(screen.getByText("Sorry, we couldn't find the page you're looking for.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Sorry, we couldn't find the page you're looking for."),
+    ).toBeInTheDocument();
   });
 
   it("uses default cocktail name when no param is provided", async () => {
-    
     const store = createTestStore();
-    
+
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/"]}>
@@ -97,7 +96,7 @@ describe("CocktailPage", () => {
             <Route path="/" element={<CocktailPage />} />
           </Routes>
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     await waitFor(() => {
@@ -108,16 +107,14 @@ describe("CocktailPage", () => {
   it("renders layout container with sidebar navigation", async () => {
     renderCocktailPage("/margarita");
 
-    
     expect(screen.getByRole("navigation")).toBeInTheDocument();
-    expect(screen.getByText("Margarita")).toBeInTheDocument(); 
-    expect(screen.getByText("Mojito")).toBeInTheDocument(); 
-    expect(screen.getByText("A1")).toBeInTheDocument(); 
-    expect(screen.getByText("Kir")).toBeInTheDocument(); 
+    expect(screen.getByText("Margarita")).toBeInTheDocument();
+    expect(screen.getByText("Mojito")).toBeInTheDocument();
+    expect(screen.getByText("A1")).toBeInTheDocument();
+    expect(screen.getByText("Kir")).toBeInTheDocument();
 
-    
     await waitFor(() => {
-      expect(screen.getAllByText("Margarita")).toHaveLength(2); 
+      expect(screen.getAllByText("Margarita")).toHaveLength(2);
     });
   });
 
@@ -143,11 +140,13 @@ describe("CocktailPage", () => {
 
     const image = screen.getByRole("img", { name: "Margarita" });
     expect(image).toHaveAttribute("loading", "lazy");
-    expect(image).toHaveAttribute("src", "https://www.thecocktaildb.com/images/media/drink/margarita.jpg");
+    expect(image).toHaveAttribute(
+      "src",
+      "https://www.thecocktaildb.com/images/media/drink/margarita.jpg",
+    );
   });
 
   it("handles different cocktail names correctly", async () => {
-    
     const testCases = [
       { route: "/margarita", expectedName: "Margarita" },
       { route: "/mojito", expectedName: "Mojito" },
@@ -155,12 +154,12 @@ describe("CocktailPage", () => {
 
     for (const testCase of testCases) {
       const { unmount } = renderCocktailPage(testCase.route);
-      
+
       await waitFor(() => {
         expect(screen.getByText(testCase.expectedName)).toBeInTheDocument();
       });
-      
+
       unmount();
     }
   });
-}); 
+});

@@ -4,7 +4,7 @@ import { cocktailsApi } from "./app/apiSlice";
 describe("Redux Store", () => {
   it("should be configured with the correct reducers", () => {
     const state = store.getState();
-    
+
     // Check that the cocktailsApi reducer is present
     expect(state).toHaveProperty(cocktailsApi.reducerPath);
   });
@@ -14,7 +14,7 @@ describe("Redux Store", () => {
     // and verifying the store structure
     const dispatch = store.dispatch;
     expect(typeof dispatch).toBe("function");
-    
+
     // The store should be properly configured for RTK Query
     const state = store.getState();
     expect(state[cocktailsApi.reducerPath]).toBeDefined();
@@ -24,7 +24,7 @@ describe("Redux Store", () => {
     // Dispatch an action to test the store
     const action = { type: "TEST_ACTION", payload: "test" };
     store.dispatch(action);
-    
+
     // Store should still be in a valid state
     const newState = store.getState();
     expect(newState).toBeDefined();
@@ -33,7 +33,7 @@ describe("Redux Store", () => {
 
   it("should have the correct initial state structure", () => {
     const state = store.getState();
-    
+
     // RTK Query creates specific state structure
     const apiState = state[cocktailsApi.reducerPath];
     expect(apiState).toHaveProperty("queries");
@@ -51,9 +51,9 @@ describe("Redux Store", () => {
 
     // Dispatch an action to trigger subscription
     store.dispatch({ type: "TEST_SUBSCRIPTION" });
-    
+
     expect(callCount).toBe(1);
-    
+
     // Clean up
     unsubscribe();
   });
@@ -65,4 +65,4 @@ describe("Redux Store", () => {
     expect(typeof store.subscribe).toBe("function");
     expect(typeof store.replaceReducer).toBe("function");
   });
-}); 
+});

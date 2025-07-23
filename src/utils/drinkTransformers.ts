@@ -2,16 +2,16 @@ import type { Drink } from "../store/app/types";
 
 export function formatDrinkData(drink: Drink) {
   const ingredients = [];
-  
+
   // Извлекаем ингредиенты и их количество
   for (let i = 1; i <= 15; i++) {
     const ingredient = drink[`strIngredient${i}` as keyof Drink];
     const measure = drink[`strMeasure${i}` as keyof Drink];
-    
+
     if (ingredient && ingredient.trim()) {
       ingredients.push({
         ingredient: ingredient.trim(),
-        measure: measure ? measure.trim() : '',
+        measure: measure ? measure.trim() : "",
       });
     }
   }
@@ -25,4 +25,4 @@ export function formatDrinkData(drink: Drink) {
     image: drink.strDrinkThumb,
     ingredients,
   };
-} 
+}

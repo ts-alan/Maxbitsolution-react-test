@@ -1,2 +1,2 @@
-export { CocktailPage } from './CocktailPage';
-export { NotFoundPage } from './NotFoundPage'; 
+export { CocktailPage } from "./CocktailPage";
+export { NotFoundPage } from "./NotFoundPage";
