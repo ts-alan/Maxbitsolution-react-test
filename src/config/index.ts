@@ -4,8 +4,7 @@ interface Config {
   };
 }
 
-// В браузере Vite заменяет import.meta.env.* на реальные значения во время сборки.
-// В тестах мы используем мок из jest.setup.ts.
+// Vite replaces import.meta.env.* with actual values during build
 const config: Config = {
   api: {
     baseUrl:
