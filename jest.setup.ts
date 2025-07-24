@@ -7,11 +7,18 @@ import { TransformStream } from "stream/web";
 process.env['VITE_API_BASE_URL'] = "https://www.thecocktaildb.com/api/json/v1/1/";
 
 // Polyfills for Node.js environment
-(global as any).TextEncoder = TextEncoder;
-(global as any).TextDecoder = TextDecoder;
-(global as any).TransformStream = TransformStream;
-
-(global as any).BroadcastChannel = class BroadcastChannel {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+global.TextEncoder = TextEncoder;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+global.TextDecoder = TextDecoder;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+global.TransformStream = TransformStream;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+global.BroadcastChannel = class BroadcastChannel {
   constructor(public name: string) {}
   addEventListener() {}
   removeEventListener() {}
