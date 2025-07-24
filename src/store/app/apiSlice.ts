@@ -10,9 +10,6 @@ export const cocktailsApi = createApi({
   endpoints: (builder) => ({
     getCocktailByName: builder.query<CocktailsResponse, string>({
       query: (name) => `search.php?s=${name}`,
-      // Prevent duplicate requests when component unmounts and mounts again
-      // If data exists in cache, return it without making a new network request
-      refetchOnMountOrArgChange: false,
     }),
   }),
 });
