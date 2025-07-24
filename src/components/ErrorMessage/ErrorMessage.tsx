@@ -12,4 +12,4 @@ export function ErrorMessage({ message }: ErrorMessageProps) {
       <p>{message || "Failed to load data. Please try again later."}</p>
     </div>
   );
-} 
+}

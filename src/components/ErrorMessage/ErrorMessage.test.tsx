@@ -44,4 +44,4 @@ describe("ErrorMessage component", () => {
       screen.getByText("Failed to load data. Please try again later."),
     ).toBeInTheDocument();
   });
-}); 
+});
