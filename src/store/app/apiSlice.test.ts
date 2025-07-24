@@ -115,6 +115,28 @@ describe("cocktailsApi", () => {
       // Should still return a valid response structure
       expect(result.data).toEqual({ drinks: null });
     });
+
+    it("should keep data in cache after unsubscription", async () => {
+      const promise = store.dispatch(
+        cocktailsApi.endpoints.getCocktailByName.initiate("margarita"),
+      );
+      const result = await promise;
+      expect(result.isSuccess).toBe(true);
+
+      promise.unsubscribe();
+
+      store.dispatch(
+        cocktailsApi.endpoints.getCocktailByName.initiate("margarita"),
+      );
+
+      const margaritaQueryState =
+        cocktailsApi.endpoints.getCocktailByName.select("margarita")(
+          store.getState(),
+        );
+
+      expect(margaritaQueryState.status).toBe("fulfilled");
+      expect(margaritaQueryState.isSuccess).toBe(true);
+    });
   });
 
   describe("API slice configuration", () => {

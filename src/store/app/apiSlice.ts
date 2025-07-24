@@ -10,6 +10,8 @@ export const cocktailsApi = createApi({
   endpoints: (builder) => ({
     getCocktailByName: builder.query<CocktailsResponse, string>({
       query: (name) => `search.php?s=${name}`,
+      // Keep unused data in the cache for 1 hour (3600 seconds)
+      extraOptions: { keepUnusedDataFor: 3600 },
     }),
   }),
 });
