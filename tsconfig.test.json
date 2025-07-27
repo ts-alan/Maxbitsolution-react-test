@@ -18,4 +18,5 @@
     "jest.setup.ts",
     "src/types/scss.d.ts"
   ]
-} 
+}   
+  

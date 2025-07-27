@@ -52,3 +52,5 @@ export function CocktailDetails({ drink }: CocktailDetailsProps) {
     </div>
   );
 }
+  
+  

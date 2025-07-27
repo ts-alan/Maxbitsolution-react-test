@@ -96,3 +96,5 @@ describe("SideMenu component", () => {
     expect(screen.getByText("Kir")).toBeInTheDocument();
   });
 });
+  
+  

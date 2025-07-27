@@ -42,3 +42,5 @@ export type Drink = {
 export interface CocktailsResponse {
   drinks: Drink[] | null;
 }
+  
+  

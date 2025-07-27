@@ -115,3 +115,5 @@ describe("CocktailDetails component", () => {
     expect(document.querySelector(".ingredients-list")).toBeInTheDocument();
   });
 });
+  
+  

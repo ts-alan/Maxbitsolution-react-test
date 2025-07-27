@@ -26,3 +26,5 @@ export function formatDrinkData(drink: Drink) {
     ingredients,
   };
 }
+  
+  

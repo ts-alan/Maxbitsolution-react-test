@@ -70,3 +70,5 @@ describe("NotFoundPage", () => {
     expect(kirLink).toHaveAttribute("href", "/kir");
   });
 });
+  
+  

@@ -26,3 +26,5 @@ describe("Config", () => {
     expect(config.api.baseUrl).toMatch(/\/$/);
   });
 });
+  
+  
