@@ -19,3 +19,4 @@ export const cocktailsApi = createApi({
 export const { useGetCocktailByNameQuery } = cocktailsApi;
   
   
+ 
